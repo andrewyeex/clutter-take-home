@@ -3,8 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "react": "^16.8.5",
-    "react-dom": "^16.8.5",
+    "antd": "3.15.2",
+    "enzyme": "3.9.0",
+    "enzyme-adapter-react-16": "1.11.2",
+    "react": "16.8.5",
+    "react-dom": "16.8.5",
     "react-scripts": "2.1.8"
   },
   "scripts": {
