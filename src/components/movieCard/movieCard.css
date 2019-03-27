@@ -1,0 +1,15 @@
+.movie-card {
+  padding: 1em 1em 1em 1em;
+  transition: 0.25s;
+}
+
+.movie-card:hover {
+  background: rgb(230, 230, 230);
+  cursor: pointer;
+
+}
+
+.movie-card span {
+  height: 100%;
+  width: 60%;
+}

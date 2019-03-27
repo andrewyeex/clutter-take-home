@@ -9,11 +9,14 @@ export default class ContentPane extends Component {
     }
   }
   render(){
+    console.log({selectedMovie: this.props.selectedMovie})
     return(
       <div>Hello World</div>
     )
   }
 }
 
-ContentPane.propTypes = {}
+ContentPane.propTypes = {
+  selectedMovie: PropTypes.shape()
+}
 ContentPane.defaultProps = {}

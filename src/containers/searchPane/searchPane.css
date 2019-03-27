@@ -1,0 +1,8 @@
+.padding-wrapper {
+  padding: 1em;
+}
+
+#search-list-container {
+  height: 100%;
+  overflow-y: scroll;
+}

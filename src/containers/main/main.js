@@ -10,18 +10,23 @@ export default class Main extends Component {
   constructor(props){
     super(props)
     this.state = {
-
+      selectedMovie : {}
     }
   }
+
+  handleSelectedMovie = (selectedMovie) => this.setState({ selectedMovie })
+
   render() {
     return (
       <React.Fragment>
-        <Row>
+        <Row style={{ background: '#f3f3f3' }}>
           <Col xs={24} sm={24} md={14} lg={16} xl={18}>
-            <ContentPane />
+            <ContentPane selectedMovie={this.state.selectedMovie}/>
           </Col>
           <Col xs={24} sm={24} md={10} lg={8} xl={6}>
-            <SearchPane />
+            <SearchPane
+              handleSelectedMovie={this.handleSelectedMovie}
+            />
           </Col>
         </Row>
       </React.Fragment>
