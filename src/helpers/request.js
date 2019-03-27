@@ -19,6 +19,6 @@ export const getMoviesByID = async (movieID, error) => _GET(`${ROOT_URL}/movies/
 
 export const getMoviesByTerm = async (term, error) => _GET(`${ROOT_URL}/movies.json?q[title_cont]=${term}`)
 
-export const getCastMemberByID = async (castID, error) => _GET(`${ROOT_URL}/movies/${castID}/cast_members.json`)
+export const getCastMemberByID = async (movieID, error) => _GET(`${ROOT_URL}/movies/${movieID}/cast_members.json`)
 
 

@@ -38,7 +38,10 @@ export default class SearchPane extends Component {
       isLoadingSearchRequest,
       results
     } = this.state
-    const { handleSelectedMovie } = this.props
+    const {
+      handleSelectedMovie,
+      selectedMovie
+    } = this.props
     return(
       <Row style={{ height: '100vh' }}>
         <Col span={24}>
@@ -56,7 +59,7 @@ export default class SearchPane extends Component {
             {
               isLoadingSearchRequest ?
               <Spin indicator={antIcon} /> :
-              results.map(props => <MovieCard key={props.id} handleOnClick={()=>handleSelectedMovie(props)} {...props} />)
+              results.map(props => <MovieCard key={props.id} handleOnClick={handleSelectedMovie} selectedMovie={selectedMovie} {...props} />)
             }
           </div>
         </Col>

@@ -20,12 +20,13 @@ export default class Main extends Component {
     return (
       <React.Fragment>
         <Row style={{ background: '#f3f3f3' }}>
-          <Col xs={24} sm={24} md={14} lg={16} xl={18}>
+          <Col xs={24} sm={24} md={14} lg={16} xl={18} style={{ height: '100vh', padding: '1em'}}>
             <ContentPane selectedMovie={this.state.selectedMovie}/>
           </Col>
           <Col xs={24} sm={24} md={10} lg={8} xl={6}>
             <SearchPane
               handleSelectedMovie={this.handleSelectedMovie}
+              selectedMovie={this.state.selectedMovie}
             />
           </Col>
         </Row>
