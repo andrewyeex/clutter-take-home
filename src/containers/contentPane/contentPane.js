@@ -39,14 +39,6 @@ export default class ContentPane extends Component {
           <Col style={{ boxShadow: '0 3px 6px 0 rgb(225, 225, 225)' }} >
           </Col>
         </Row>
-        <Row style={{ height: '100%' }}>
-          <Col style={{ boxShadow: '0 3px 6px 0 rgb(225, 225, 225)' }} >
-          </Col>
-        </Row>
-        <Row style={{ height: '100%' }}>
-          <Col style={{ boxShadow: '0 3px 6px 0 rgb(225, 225, 225)' }} >
-          </Col>
-        </Row>
       </React.Fragment>
 
     )
