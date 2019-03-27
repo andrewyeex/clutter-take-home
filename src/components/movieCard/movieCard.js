@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Avatar, Row, Col, Typography } from 'antd'
 import PropTypes from 'prop-types'
 import './movieCard.css'
@@ -10,10 +10,10 @@ export const MovieCard = React.memo(function MovieCard(props){
     title,
     release_date : date,
     handleOnClick,
-    selectedMovie 
+    selectedMovie
   } = props
   return(
-    <Row className={`movie-card${id===selectedMovie.id ? ' selected' : ''}`} id={id} onClick={()=>handleOnClick(props)}>
+    <Row className={`movie-card${id===selectedMovie.id ? ' selected' : ''}`} id={id} onClick={id===selectedMovie.id ? '' : ()=>handleOnClick(props)}>
       <Col xs={8} sm={8} md={8} lg={8} xl={8}>
       {!!img.length ? <Avatar size="large" shape="square" src={img} alt='movie poster'/> : <Avatar size="large" shape="square"/>}
       </Col>

@@ -12,7 +12,7 @@ import { MovieCard } from '../../components/movieCard/movieCard'
 
 import './searchPane.css'
 
-const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />
+const antIcon = <Icon type="loading" style={{ fontSize: 48, color: '#808080' }} spin />
 
 export default class SearchPane extends Component {
   constructor(props){
@@ -58,7 +58,9 @@ export default class SearchPane extends Component {
           <div id='search-list-container' className='padding-wrapper'>
             {
               isLoadingSearchRequest ?
-              <Spin indicator={antIcon} /> :
+              <div id='search-spin'>
+                <Spin indicator={antIcon} />
+              </div> :
               results.map(props => <MovieCard key={props.id} handleOnClick={handleSelectedMovie} selectedMovie={selectedMovie} {...props} />)
             }
           </div>

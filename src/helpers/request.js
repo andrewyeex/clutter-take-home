@@ -15,10 +15,10 @@ const _GET = async (url) => {
   }
 }
 
-export const getMoviesByID = async (movieID, error) => _GET(`${ROOT_URL}/movies/${movieID}.json`)
+export const getMoviesByID = async (movieID) => _GET(`${ROOT_URL}/movies/${movieID}.json`)
 
-export const getMoviesByTerm = async (term, error) => _GET(`${ROOT_URL}/movies.json?q[title_cont]=${term}`)
+export const getMoviesByTerm = async (term) => _GET(`${ROOT_URL}/movies.json?q[title_cont]=${term}`)
 
-export const getCastMemberByID = async (movieID, error) => _GET(`${ROOT_URL}/movies/${movieID}/cast_members.json`)
+export const getCastMemberByID = async (movieID) => _GET(`${ROOT_URL}/movies/${movieID}/cast_members.json`)
 
 
