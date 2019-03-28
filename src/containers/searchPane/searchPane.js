@@ -29,11 +29,7 @@ export default class SearchPane extends Component {
   handleSearch = async (e) => {
     if (e.key === 'Enter') {
       const term = e.target.value
-      /*
-        isLoadingSearchRequest state is used
-        to help handle the UI/UX for an async request.
-        It will be used for rendering content/spin icon
-      */
+      // isLoadingSearchRequest is used to handle ui/ux for async interactions on the page
       this.setState({
         term,
         isLoadingSearchRequest: true
