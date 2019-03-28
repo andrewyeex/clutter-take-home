@@ -56,7 +56,7 @@ export default class SearchPane extends Component {
       selectedMovieID
     } = this.props
     return(
-      <Row style={{ height: '100vh' }}>
+      <Row id='search-pane-container'>
         <Col span={24}>
           <div className='padding-wrapper'>
             <Search
@@ -93,4 +93,7 @@ SearchPane.propTypes = {
   handleSelectedMovie: PropTypes.func.isRequired,
   selectedMovieID: PropTypes.number
 }
-SearchPane.defaultProps = {}
+SearchPane.defaultProps = {
+  handleSelectedMovie: () => console.error('callback unavailable'),
+  selectedMovieID: -1
+}
