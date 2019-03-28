@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import {
   Row,
-  Col,
-  Spin
+  Col
 } from 'antd'
 
 import SearchPane from '../searchPane/searchPane'
@@ -61,3 +61,9 @@ export default class Main extends Component {
     )
   }
 }
+
+Main.propTypes = {
+  selectedMovie: PropTypes.shape()
+}
+Main.defaultProps = {}
+

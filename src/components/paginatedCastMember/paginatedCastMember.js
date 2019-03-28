@@ -1,6 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Row, Avatar, Icon } from 'antd'
+
+import { CastMemberItem } from '../castMemberItem/castMemberItem'
+
+import {
+  Row,
+  Icon
+} from 'antd'
 
 export const PaginatedCastMember = React.memo(function PaginatedCastMember({
   imgRootUrl,
@@ -37,22 +43,5 @@ export const PaginatedCastMember = React.memo(function PaginatedCastMember({
   )
 })
 
-const CastMemberItem = React.memo(function CastMemberItem({
-  name,
-  img
-}){
-  const avatarProps = {
-    size: 100,
-    ...(
-      img ?
-      {src: img} :
-      {icon: 'user'}
-    )
-  }
-  return(
-    <div className='cast-member'>
-      <Avatar {...avatarProps} />
-      <p className='name'>{name}</p>
-    </div>
-  )
-})
+PaginatedCastMember.propTypes = {}
+PaginatedCastMember.defaultProps = {}
