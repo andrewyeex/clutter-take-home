@@ -13,17 +13,21 @@ import 'antd/dist/antd.css'
 import './main.css'
 
 export default class Main extends Component {
-  state = {
-    selectedMovie : {},
-    isLoadingCastMemberRequest: false,
-    paginatedCastMember : []
+  constructor(props){
+    super(props)
+    this.state =  {
+      selectedMovie : {},
+      isLoadingCastMemberRequest: false,
+      paginatedCastMember : []
+    }
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    return (this.state.selectedMovie.id !== nextState.selectedMovie.id)
+    return (this.state.isLoadingCastMemberRequest !== nextState.isLoadingCastMemberRequest)
   }
 
   handleSelectedMovie = async (selectedMovie) => {
+    if (selectedMovie.id === this.state.selectedMovie.id) return
     // isLoadingCastMemberRequest used to handle ui/ux
     // for async interactions on the page
     this.setState({ isLoadingCastMemberRequest: true })

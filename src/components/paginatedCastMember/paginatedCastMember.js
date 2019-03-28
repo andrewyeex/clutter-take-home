@@ -28,7 +28,7 @@ export const PaginatedCastMember = React.memo(function PaginatedCastMember({
             <CastMemberItem
               key={tmdb_id}
               name={name}
-              img={img ? `${imgRootUrl}${img}` : false}/>
+              img={img ? `${imgRootUrl}${img}` : ''}/>
         )}
       </div>
       <div>
