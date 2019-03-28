@@ -74,9 +74,9 @@ export default class SearchPane extends Component {
                 <Spin indicator={antIcon} />
               </div> :
               movieResults.map(
-                movie => 
+                movie =>
                   <MovieItem
-                    key={movie.id} 
+                    key={movie.id}
                     handleOnClick={handleSelectedMovie}
                     selectedMovieID={selectedMovieID}
                     {...movie} />
@@ -90,6 +90,7 @@ export default class SearchPane extends Component {
 }
 
 SearchPane.propTypes = {
-  handleSelectedMovie: PropTypes.func.isRequired
+  handleSelectedMovie: PropTypes.func.isRequired,
+  selectedMovieID: PropTypes.number
 }
 SearchPane.defaultProps = {}

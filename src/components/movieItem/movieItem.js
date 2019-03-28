@@ -22,12 +22,11 @@ export const MovieItem = React.memo(function MovieItem(props){
     handleOnClick,
     selectedMovieID
   } = props
-  const onClick = () => id===selectedMovieID ? '' : handleOnClick(props)
   return(
     <Row
       id={id}
       className={`movie-item${id===selectedMovieID ? ' selected' : ''}`}
-      onClick={onClick}>
+      onClick={()=>handleOnClick(props)}>
       <Col xs={8} sm={8} md={8} lg={8} xl={8}>
         <Avatar {...{
           shape: 'square',
