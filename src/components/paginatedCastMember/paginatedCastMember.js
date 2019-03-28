@@ -1,21 +1,28 @@
 import React from 'react'
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 import { Row, Avatar, Icon } from 'antd'
 
-export const PaginatedCastMember = React.memo(function PaginatedCastMember(props){
-  const {
-    imgRootUrl,
-    size,
-    content = [],
-    onNext,
-    onPrev,
-    current
-  } = props
+export const PaginatedCastMember = React.memo(function PaginatedCastMember({
+  imgRootUrl,
+  size,
+  castMembers = [],
+  onNext,
+  onPrev,
+  current
+}){
   return(
     <Row id='custom-paginated-cast-member'>
       <div id='cast-member-container'>
-        {content.map(
-          (c,idx) => <CastMemberItem key={idx} name={c.name} img={c.profile_path} imgRootUrl={imgRootUrl}/>
+        {castMembers.map(
+          ({
+            name,
+            profile_path : img,
+            tmdb_id
+          }) => 
+            <CastMemberItem
+              key={tmdb_id}
+              name={name}
+              img={img ? `${imgRootUrl}${img}` : false}/>
         )}
       </div>
       <div>
@@ -30,16 +37,22 @@ export const PaginatedCastMember = React.memo(function PaginatedCastMember(props
   )
 })
 
-const CastMemberItem = ({
+const CastMemberItem = React.memo(function CastMemberItem({
   name,
-  img,
-  imgRootUrl
-}) => {
-  console.log({ imgRootUrl : `${imgRootUrl}${img}` })
+  img
+}){
+  const avatarProps = {
+    size: 100,
+    ...(
+      img ?
+      {src: img} :
+      {icon: 'user'}
+    )
+  }
   return(
     <div className='cast-member'>
-      { img ?  <Avatar src={`${imgRootUrl}${img}`} size={100} /> : <Avatar icon='user' size={100} /> }
+      <Avatar {...avatarProps} />
       <p className='name'>{name}</p>
     </div>
   )
-}
+})

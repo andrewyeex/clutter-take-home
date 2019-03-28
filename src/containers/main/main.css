@@ -1,7 +1,11 @@
 #main-left {
   height: 100vh;
   padding: 1em;
+  background: linear-gradient(to top, #fff, #ccc);
+  overflow: auto;
 }
+
+#main-right { box-shadow: -5px 0px 20px 1px #aaa; }
 
 #main-spin {
   justify-content: center;

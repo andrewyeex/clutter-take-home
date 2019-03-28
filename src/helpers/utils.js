@@ -26,5 +26,7 @@ export const paginateArray = (arr, limit) => {
 export const formatDate = str => {
   if (Number.isNaN(Date.parse(str))) return
   const date = new Date(str)
-  return `${date.getMonth()}/${date.getDay()}/${String(date.getFullYear()).slice(2)}`
+  return (1 + date.getMonth()).toString().padStart(2, '0') + '/' + 
+        date.getDate().toString().padStart(2, '0') + '/' +
+        date.getFullYear()
 }

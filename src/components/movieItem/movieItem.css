@@ -3,7 +3,7 @@
   margin-bottom: 1em;
   transition: 0.25s;
   cursor: pointer;
-  box-shadow: 0 3px 6px 0 rgb(225, 225, 225);
+  box-shadow: 0 3px 6px 0 rgb(201, 201, 201);
 }
 
 .movie-item:hover,

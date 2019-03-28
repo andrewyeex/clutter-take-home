@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import {
   Row,
   Col,
-  Spin,
-  Icon
+  Spin
 } from 'antd'
 
 import SearchPane from '../searchPane/searchPane'
@@ -13,8 +12,6 @@ import { paginateArray } from '../../helpers/utils'
 
 import 'antd/dist/antd.css'
 import './main.css'
-
-const antIcon = <Icon type='loading' style={{ fontSize: 48, color: '#808080'}} spin />
 
 export default class Main extends Component {
   constructor(props){
@@ -47,12 +44,9 @@ export default class Main extends Component {
       <Row>
         <Col xs={24} sm={24} md={14} lg={16} xl={18} id='main-left'>
         {
-          isLoadingCastMemberRequest ?
-          <div id='main-spin'>
-            <Spin indicator={antIcon} />
-          </div> :
           Object.keys(selectedMovie).length ?
             <ContentPane
+              isLoadingCastMemberRequest={isLoadingCastMemberRequest}
               paginatedCastMember={paginatedCastMember}
               selectedMovie={selectedMovie}/> : null
         }
