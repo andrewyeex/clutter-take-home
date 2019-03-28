@@ -59,5 +59,5 @@ MovieItem.defaultProps = {
   title: 'default',
   date: '00/00/0000',
   selectedMovieID: -1,
-  handleOnClick: () => console.log('TODO: handleOnClick')
+  handleOnClick: () => console.error('Fn() unavailable')
 }

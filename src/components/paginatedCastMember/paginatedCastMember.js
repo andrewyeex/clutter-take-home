@@ -11,7 +11,7 @@ import {
 export const PaginatedCastMember = React.memo(function PaginatedCastMember({
   imgRootUrl,
   size,
-  castMembers = [],
+  castMembers,
   onNext,
   onPrev,
   current
@@ -24,7 +24,7 @@ export const PaginatedCastMember = React.memo(function PaginatedCastMember({
             name,
             profile_path : img,
             tmdb_id
-          }) => 
+          }) =>
             <CastMemberItem
               key={tmdb_id}
               name={name}
@@ -36,12 +36,26 @@ export const PaginatedCastMember = React.memo(function PaginatedCastMember({
           <Icon type="left" />
         </div>
         <div className={`small-circular-btn${current === size-1 ? ' inactive' : ''}`}  onClick={onNext}>
-        <Icon type="right" />
+          <Icon type="right" />
         </div>
       </div>
     </Row>
   )
 })
 
-PaginatedCastMember.propTypes = {}
-PaginatedCastMember.defaultProps = {}
+PaginatedCastMember.propTypes = {
+  imgRootUrl: PropTypes.string.isRequired,
+  size: PropTypes.number.isRequired,
+  current: PropTypes.number.isRequired,
+  castMembers: PropTypes.array.isRequired,
+  onNext: PropTypes.func.isRequired,
+  onPrev: PropTypes.func.isRequired
+}
+PaginatedCastMember.defaultProps = {
+  imgRootUrl: '',
+  size: 0,
+  current: 0,
+  castMembers: [],
+  onNext: () => console.error('callback unavailable'),
+  onPrev: () => console.error('callback unavailable')
+}

@@ -1,8 +1,18 @@
-#content-pane-container {
+#content-pane-outer {
+  height: 100%;
+  padding: 1em;
+}
+
+#content-pane-inner {
   height: 100%;
   padding: 2em 0em;
   background: #fff;
   box-shadow: 0 3px 6px 0 rgb(201, 201, 201);
+}
+
+#main-img {
+  text-align: center;
+  padding-top: 0.5em;
 }
 
 #content-pane > div:nth-of-type(2){
