@@ -1,15 +1,19 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Row, Col, Typography } from 'antd'
+import {
+  Row,
+  Col,
+  Typography
+} from 'antd'
 
 import { PaginatedCastMember } from '../../components/paginatedCastMember/paginatedCastMember'
+import { getBaseImgURL } from '../../helpers/utils'
 
 import './contentPane.css'
 
-const {Title, Text} = Typography
+const { Title, Text } = Typography
 
 export default class ContentPane extends Component {
-
   constructor(props){
     super(props)
     this.state = {
@@ -23,7 +27,6 @@ export default class ContentPane extends Component {
   }
 
   handleOnNextPagination = () => {
-    console.log('next')
     this.setState(prevState => {
       if (prevState.currentPagination === this.props.paginatedCastMember.length-1) return
       return { currentPagination: prevState.currentPagination + 1 }
@@ -38,17 +41,16 @@ export default class ContentPane extends Component {
   }
 
   render(){
-
     const { currentPagination } = this.state
-    const { selectedMovie, paginatedCastMember, isLoadingCastMemberRequest } = this.props
     const {
-      // id,
+      selectedMovie,
+      paginatedCastMember,
+    } = this.props
+    const {
       poster_path : img,
       title,
       overview,
-      // release_date : date,
     } = selectedMovie
-
     return(
       <Row style={{ height: '100%' }}>
         <Col xs={24} sm={24} md={10} lg={10} xl={10} style={{ textAlign: 'center', paddingTop: '0.5em' }}>
@@ -64,7 +66,6 @@ export default class ContentPane extends Component {
           </Row>
           {
             !!paginatedCastMember[0].length &&
-            !isLoadingCastMemberRequest &&
             <div>
               <Title level={2}>Cast</Title>
               <PaginatedCastMember
@@ -83,11 +84,7 @@ export default class ContentPane extends Component {
   }
 }
 
-const getBaseImgURL = str => {
-  if (!str) return
-  const arr = str.split('/')
-  return arr.slice(0, arr.length-1).join('/')
-}
+
 
 ContentPane.propTypes = {
   selectedMovie: PropTypes.shape()

@@ -1,4 +1,4 @@
-.movie-card {
+.movie-item {
   padding: 1em 1em 1em 1em;
   margin-bottom: 1em;
   transition: 0.25s;
@@ -6,12 +6,12 @@
   box-shadow: 0 3px 6px 0 rgb(225, 225, 225);
 }
 
-.movie-card:hover,
-.movie-card.selected {
+.movie-item:hover,
+.movie-item.selected {
   background: rgb(220, 220, 220);
 }
 
-.movie-card span {
+.movie-item span {
   height: 100%;
   width: 60%;
 }

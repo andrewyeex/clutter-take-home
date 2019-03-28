@@ -7,19 +7,21 @@ import {
   Icon
 } from 'antd'
 import PropTypes from 'prop-types'
+
 import { getMoviesByTerm } from '../../helpers/request'
-import { MovieCard } from '../../components/movieCard/movieCard'
+import { MovieItem } from '../../components/movieItem/movieItem'
 
 import './searchPane.css'
 
-const antIcon = <Icon type="loading" style={{ fontSize: 48, color: '#808080' }} spin />
+const { Search } = Input
+const antIcon = <Icon type='loading' style={{ fontSize: 48, color: '#808080' }} spin />
 
 export default class SearchPane extends Component {
   constructor(props){
     super(props)
     this.state = {
       isLoadingSearchRequest: false,
-      results: [],
+      movieResults: [],
       term: ''
     }
   }
@@ -27,29 +29,39 @@ export default class SearchPane extends Component {
   handleSearch = async (e) => {
     if (e.key === 'Enter') {
       const term = e.target.value
-      this.setState({ isLoadingSearchRequest: true, term})
-      const r = await getMoviesByTerm(term)
-      this.setState({ isLoadingSearchRequest: false, results: r })
+      /*
+        isLoadingSearchRequest state is used
+        to help handle the UI/UX for an async request.
+        It will be used for rendering content/spin icon
+      */
+      this.setState({
+        term,
+        isLoadingSearchRequest: true
+      })
+      const movieResults = await getMoviesByTerm(term)
+      this.setState({
+        movieResults,
+        isLoadingSearchRequest: false
+      })
     }
   }
 
   render(){
     const {
       isLoadingSearchRequest,
-      results
+      movieResults
     } = this.state
     const {
       handleSelectedMovie,
-      selectedMovie
+      selectedMovieID
     } = this.props
     return(
       <Row style={{ height: '100vh' }}>
         <Col span={24}>
           <div className='padding-wrapper'>
-            <Input.Search
+            <Search
               placeholder='Enter movie term'
               onKeyPress={this.handleSearch}
-              onSearch={value => console.log(value)}
               style={{ width: '100%' }}
             />
           </div>
@@ -61,7 +73,14 @@ export default class SearchPane extends Component {
               <div id='search-spin'>
                 <Spin indicator={antIcon} />
               </div> :
-              results.map(props => <MovieCard key={props.id} handleOnClick={handleSelectedMovie} selectedMovie={selectedMovie} {...props} />)
+              movieResults.map(
+                movie => 
+                  <MovieItem
+                    key={movie.id} 
+                    handleOnClick={handleSelectedMovie}
+                    selectedMovieID={selectedMovieID}
+                    {...movie} />
+              )
             }
           </div>
         </Col>
