@@ -32,10 +32,16 @@ export const PaginatedCastMember = React.memo(function PaginatedCastMember({
         )}
       </div>
       <div>
-        <div className={`small-circular-btn${current === 0 ? ' inactive' : ''}`} onClick={onPrev}>
+        <div
+          id='prev-btn'
+          onClick={onPrev} // will this work if inactive ?
+          className={`small-circular-btn${current === 0 ? ' inactive' : ''}`}>
           <Icon type="left" />
         </div>
-        <div className={`small-circular-btn${current === size-1 ? ' inactive' : ''}`}  onClick={onNext}>
+        <div
+          id='next-btn'
+          onClick={onNext}
+          className={`small-circular-btn${current === size-1 ? ' inactive' : ''}`}>
           <Icon type="right" />
         </div>
       </div>

@@ -28,7 +28,9 @@ export const MovieItem = React.memo(function MovieItem(props){
       className={`movie-item${id===selectedMovieID ? ' selected' : ''}`}
       onClick={()=>handleOnClick(props)}>
       <Col xs={8} sm={8} md={8} lg={8} xl={8}>
-        <Avatar {...{
+        <Avatar 
+          className='movie-item-avatar'
+          {...{
           shape: 'square',
           size: 'large',
           alt: 'movie poster',
@@ -46,16 +48,16 @@ export const MovieItem = React.memo(function MovieItem(props){
 })
 
 MovieItem.prototype = {
-  img: PropTypes.string.isRequired,
+  poster_path: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  date: PropTypes.string.isRequired,
+  release_date: PropTypes.string.isRequired,
   handleOnClick: PropTypes.func.isRequired
 }
 
 MovieItem.defaultProps = {
-  img: '',
+  poster_path: '',
   title: 'default',
-  date: '00/00/0000',
+  release_date: '2004-11-05T00:00:00.000Z',
   selectedMovieID: -1,
   handleOnClick: () => console.error('callback unavailable')
 }

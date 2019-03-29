@@ -5,7 +5,7 @@
 
 /**
  * Input: 'http://image.tmdb.org/t/p/w185/1234567.jpg'
- * Output: 'http://image.tmdb.org/t/p/w185/'
+ * Output: 'http://image.tmdb.org/t/p/w185'
  * @param {String} str
  */
 export const getBaseImgURL = str => {
@@ -30,7 +30,7 @@ export const paginateArray = (arr, limit) => {
 
 /**
  * Input: '2004-11-05T00:00:00.000Z'
- * Output: '10/4/04'
+ * Output: '11/04/2004'
  * @param {string} str
  * @returns {string}
  */
