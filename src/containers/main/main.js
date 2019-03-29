@@ -34,7 +34,7 @@ export default class Main extends Component {
     id,
     title,
     overview,
-    poster_path,
+    poster_path : poster,
     release_date
   }) => {
     if (id === this.state.selectedMovie.id) return false
@@ -45,7 +45,7 @@ export default class Main extends Component {
     this.setState({
       selectedMovie: {
         id,
-        img: poster_path,
+        poster,
         overview,
         title: title + ` (${new Date(release_date).getFullYear()})`
       },

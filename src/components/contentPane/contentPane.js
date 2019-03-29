@@ -18,7 +18,7 @@ const antIcon = <Icon type='loading' style={{ fontSize: 48, color: '#808080'}} s
 
 export const ContentPane = React.memo(function ContentPane({
   selectedMovie : {
-    img,
+    poster,
     overview,
     title
   },
@@ -38,7 +38,7 @@ export const ContentPane = React.memo(function ContentPane({
           </div> :
           <React.Fragment>
             <Col xs={24} sm={24} md={8} lg={8} xl={8} id='main-img'>
-              <img src={img} alt='movie poster'/>
+              <img src={poster} alt='movie poster'/>
             </Col>
             <Col xs={24} sm={24} md={14} lg={14} xl={14} id='content-pane' className={!!paginatedCastMember[0].length ? `cast` : ''}>
               <Row>
@@ -53,7 +53,7 @@ export const ContentPane = React.memo(function ContentPane({
                 <div>
                   <Title level={2}>Cast</Title>
                   <PaginatedCastMember
-                    imgRootUrl={getBaseImgURL(img)}
+                    imgRootUrl={getBaseImgURL(poster)}
                     size={paginatedCastMember.length}
                     current={currentPagination}
                     castMembers={paginatedCastMember[currentPagination]}
@@ -75,18 +75,24 @@ export const ContentPane = React.memo(function ContentPane({
 ContentPane.propTypes = {
   selectedMovie: PropTypes.shape({
     overview: PropTypes.string.isRequired,
-    poster_path: PropTypes.string.isRequired,
+    poster: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired
   }).isRequired,
   isLoadingCastMemberRequest: PropTypes.bool.isRequired,
   paginatedCastMember: PropTypes.array.isRequired,
-  currentPagination: PropTypes.number.isRequired
+  currentPagination: PropTypes.number.isRequired,
+  handleOnNextPagination: PropTypes.func.isRequired,
+  handleOnPrevPagination: PropTypes.func.isRequired
 }
 ContentPane.defaultProps = {
   selectedMovie: {
     overview: '',
-    poster_path: '',
+    poster: '',
+    title: ''
   },
   isLoadingCastMemberRequest: false,
   paginatedCastMember: [[]],
-  currentPagination: 0
+  currentPagination: 0,
+  handleOnNextPagination: () => console.error('callback unavailable'),
+  handleOnPrevPagination: () => console.error('callback unavailable')
 }
