@@ -15,6 +15,10 @@ describe('SearchPane Container', () => {
       const handleSelectedMovie = () => console.error('callback unavailable')
       expect(SearchPane.defaultProps.handleSelectedMovie()).toEqual(handleSelectedMovie())
     })
+    test('handleSearch', () => {
+      const handleSearch = () => console.error('callback unavailable')
+      expect(SearchPane.defaultProps.handleSearch()).toEqual(handleSearch())
+    })
     test('selectedMovieID', () => {
       expect(SearchPane.defaultProps.selectedMovieID).toEqual(-1)
     })

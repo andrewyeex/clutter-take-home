@@ -12,6 +12,7 @@ const _GET = async (url) => {
     return json
   } catch (e) {
     console.error(e)
+    return null
   }
 }
 

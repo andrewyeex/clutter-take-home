@@ -50,7 +50,7 @@ export const ContentPane = React.memo(function ContentPane({
               </Row>
               {
                 !!paginatedCastMember[0].length &&
-                <div>
+                <div id='content-pane-cast'>
                   <Title level={2}>Cast</Title>
                   <PaginatedCastMember
                     imgRootUrl={getBaseImgURL(poster)}
@@ -79,7 +79,15 @@ ContentPane.propTypes = {
     title: PropTypes.string.isRequired
   }).isRequired,
   isLoadingCastMemberRequest: PropTypes.bool.isRequired,
-  paginatedCastMember: PropTypes.array.isRequired,
+  paginatedCastMember: PropTypes.arrayOf(
+    PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        profile_path: PropTypes.string.isRequired,
+        tmdb_id: PropTypes.number.isRequired
+      })
+    ).isRequired
+  ).isRequired,
   currentPagination: PropTypes.number.isRequired,
   handleOnNextPagination: PropTypes.func.isRequired,
   handleOnPrevPagination: PropTypes.func.isRequired
