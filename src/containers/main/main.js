@@ -16,18 +16,15 @@ import 'antd/dist/antd.css'
 import './main.css'
 
 export default class Main extends Component {
-  constructor(props) {
-    super(props)
-    this.state =  {
-      term: '',
-      movieResults: [],
-      isLoadingSearchRequest: false,
-      selectedMovie : {},
-      selectedMovieTitle: '',
-      isLoadingCastMemberRequest: false,
-      paginatedCastMember : [],
-      currentPagination: 0
-    }
+  state =  {
+    term: '',
+    movieResults: [],
+    isLoadingSearchRequest: false,
+    selectedMovie : {},
+    selectedMovieTitle: '',
+    isLoadingCastMemberRequest: false,
+    paginatedCastMember : [],
+    currentPagination: 0
   }
 
   handleSelectedMovie = async ({
