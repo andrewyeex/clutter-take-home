@@ -4,10 +4,13 @@ import {
   Col
 } from 'antd'
 
-import SearchPane from '../searchPane/searchPane'
-import ContentPane from '../contentPane/contentPane'
-import { getCastMemberByID } from '../../helpers/request'
+import { SearchPane } from '../../components/searchPane/searchPane'
+import { ContentPane } from '../../components/contentPane/contentPane'
 import { paginateArray } from '../../helpers/utils'
+import {
+  getCastMemberByID,
+  getMoviesByTerm
+} from '../../helpers/request'
 
 import 'antd/dist/antd.css'
 import './main.css'
@@ -16,37 +19,76 @@ export default class Main extends Component {
   constructor(props) {
     super(props)
     this.state =  {
+      term: '',
+      movieResults: [],
+      isLoadingSearchRequest: false,
       selectedMovie : {},
       selectedMovieTitle: '',
       isLoadingCastMemberRequest: false,
-      paginatedCastMember : []
+      paginatedCastMember : [],
+      currentPagination: 0
     }
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return (this.state.isLoadingCastMemberRequest !== nextState.isLoadingCastMemberRequest)
-  }
-
-  handleSelectedMovie = async (selectedMovie) => {
-    if (selectedMovie.id === this.state.selectedMovie.id) return false
+  handleSelectedMovie = async ({
+    id,
+    title,
+    overview,
+    poster_path,
+    release_date
+  }) => {
+    if (id === this.state.selectedMovie.id) return false
     // isLoadingCastMemberRequest used to handle ui/ux for async interactions on the page
     this.setState({ isLoadingCastMemberRequest: true })
-    const castMember = await getCastMemberByID(selectedMovie.id)
+    const castMember = await getCastMemberByID(id)
     const paginatedCastMember = paginateArray(castMember, 6)
-    const { title, release_date } = selectedMovie
     this.setState({
-      selectedMovie,
-      selectedMovieTitle: title + ` (${new Date(release_date).getFullYear()})`,
+      selectedMovie: {
+        id,
+        img: poster_path,
+        overview,
+        title: title + ` (${new Date(release_date).getFullYear()})`
+      },
       paginatedCastMember,
       isLoadingCastMemberRequest: false
     })
   }
 
+  handleSearch = async (term) => {
+    // isLoadingSearchRequest is used to handle ui/ux for async interactions on the page
+    this.setState({
+      term,
+      movieResults: [],
+      isLoadingSearchRequest: true
+    })
+    const movieResults = await getMoviesByTerm(term)
+    this.setState({
+      isLoadingSearchRequest : false,
+      ...{...(movieResults && {movieResults})}
+    })
+  }
+
+  handleOnNextPagination = () => {
+    this.setState(prevState => {
+      if (prevState.currentPagination === prevState.paginatedCastMember.length-1) return
+      return { currentPagination: prevState.currentPagination + 1 }
+    })
+  }
+
+  handleOnPrevPagination = () => {
+    this.setState(prevState => {
+      if (prevState.currentPagination === 0) return
+      return { currentPagination: prevState.currentPagination - 1 }
+    })
+  }
+
   render() {
     const {
+      movieResults,
+      isLoadingSearchRequest,
       isLoadingCastMemberRequest,
+      currentPagination,
       paginatedCastMember,
-      selectedMovieTitle,
       selectedMovie
     } = this.state
 
@@ -56,16 +98,21 @@ export default class Main extends Component {
         {
           !!Object.keys(selectedMovie).length &&
             <ContentPane
-              isLoadingCastMemberRequest={isLoadingCastMemberRequest}
-              paginatedCastMember={paginatedCastMember}
               selectedMovie={selectedMovie}
-              selectedMovieTitle={selectedMovieTitle}/>
+              currentPagination={currentPagination}
+              paginatedCastMember={paginatedCastMember}
+              isLoadingCastMemberRequest={isLoadingCastMemberRequest}
+              handleOnNextPagination={this.handleOnNextPagination}
+              handleOnPrevPagination={this.handleOnPrevPagination}/>
         }
         </Col>
           <Col xs={24} sm={24} md={10} lg={8} xl={6} id='main-right'>
             <SearchPane
-              handleSelectedMovie={this.handleSelectedMovie}
+              movieResults={movieResults}
               selectedMovieID={selectedMovie.id}
+              handleSearch={this.handleSearch}
+              handleSelectedMovie={this.handleSelectedMovie}
+              isLoadingSearchRequest={isLoadingSearchRequest}
             />
           </Col>
       </Row>

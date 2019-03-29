@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import SearchPane from './searchPane'
+import { SearchPane } from './searchPane'
 
 import movieResults from '../../fixtures/movies.json'
 
@@ -29,15 +29,15 @@ describe('SearchPane Container', () => {
       expect(wrapper.exists('#search-pane-input')).toBe(true)
     })
     test('Loading Spinner', () => {
-      wrapper.setState({ isLoadingSearchRequest: true })
+      wrapper.setProps({ isLoadingSearchRequest: true })
       expect(wrapper.exists('#search-spin')).toBe(true)
     })
     test('NO Loading Spinner', () => {
-      wrapper.setState({ isLoadingSearchRequest: false })
+      wrapper.setProps({ isLoadingSearchRequest: false })
       expect(wrapper.exists('#search-spin')).toBe(false)
     })
     test('Movie Results', () => {
-      wrapper.setState({ isLoadingSearchRequest: false, movieResults })
+      wrapper.setProps({ isLoadingSearchRequest: false, movieResults })
       expect(wrapper.find('#search-list-container').get(0).props.children).toHaveLength(movieResults.length)
     })
   })
