@@ -38,7 +38,6 @@ export default class Main extends Component {
     release_date
   }) => {
     if (id === this.state.selectedMovie.id) return false
-    // isLoadingCastMemberRequest used to handle ui/ux for async interactions on the page
     this.setState({ isLoadingCastMemberRequest: true })
     const castMember = await getCastMemberByID(id)
     const paginatedCastMember = paginateArray(castMember, 6)
@@ -55,7 +54,6 @@ export default class Main extends Component {
   }
 
   handleSearch = async (term) => {
-    // isLoadingSearchRequest is used to handle ui/ux for async interactions on the page
     this.setState({
       term,
       movieResults: [],
