@@ -20,9 +20,9 @@ export default class SearchPane extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      isLoadingSearchRequest: false,
+      term: '',
       movieResults: [],
-      term: ''
+      isLoadingSearchRequest: false
     }
   }
 
@@ -35,19 +35,19 @@ export default class SearchPane extends Component {
     })
     const movieResults = await getMoviesByTerm(term)
     this.setState({
-      ...{...(movieResults && {movieResults})},
-      isLoadingSearchRequest : false
+      isLoadingSearchRequest : false,
+      ...{...(movieResults && {movieResults})}
     })
   }
 
   render() {
     const {
-      isLoadingSearchRequest,
-      movieResults
+      movieResults,
+      isLoadingSearchRequest
     } = this.state
     const {
-      handleSelectedMovie,
-      selectedMovieID
+      selectedMovieID,
+      handleSelectedMovie
     } = this.props
     return(
       <Row id='search-pane-container'>
