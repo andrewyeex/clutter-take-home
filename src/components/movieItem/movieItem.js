@@ -22,20 +22,18 @@ export const MovieItem = React.memo(function MovieItem(props){
     handleOnClick,
     selectedMovieID
   } = props
-  const onClick = () => id===selectedMovieID ? '' : handleOnClick(props)
-  const avatarProps = {
-    shape: 'square',
-    size: 'large',
-    alt: 'movie poster',
-    ...(!!img.length && {src: img})
-  }
   return(
     <Row
       id={id}
       className={`movie-item${id===selectedMovieID ? ' selected' : ''}`}
-      onClick={onClick}>
+      onClick={()=>handleOnClick(props)}>
       <Col xs={8} sm={8} md={8} lg={8} xl={8}>
-        <Avatar {...avatarProps} />
+        <Avatar {...{
+          shape: 'square',
+          size: 'large',
+          alt: 'movie poster',
+          ...(!!img.length && {src: img})
+        }} />
       </Col>
       <Col xs={16} sm={16} md={16} lg={16} xl={16}>
         <div>
@@ -59,5 +57,5 @@ MovieItem.defaultProps = {
   title: 'default',
   date: '00/00/0000',
   selectedMovieID: -1,
-  handleOnClick: () => console.log('TODO: handleOnClick')
+  handleOnClick: () => console.error('callback unavailable')
 }

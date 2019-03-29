@@ -7,21 +7,24 @@ export const CastMemberItem = React.memo(function CastMemberItem({
   name,
   img
 }){
-  const avatarProps = {
-    size: 100,
-    ...(
-      img ?
-      {src: img} :
-      {icon: 'user'}
-    )
-  }
   return(
     <div className='cast-member'>
-      <Avatar {...avatarProps} />
+      <Avatar
+        {...{
+          size: 100,
+          ...(img ? {src: img} : {icon: 'user'})
+        }}
+      />
       <p className='name'>{name}</p>
     </div>
   )
 })
 
-CastMemberItem.propTypes = {}
-CastMemberItem.defaultProps = {}
+CastMemberItem.propTypes = {
+  name: PropTypes.string.isRequired,
+  img: PropTypes.string.isRequired
+}
+CastMemberItem.defaultProps = {
+  name: '',
+  img: ''
+}

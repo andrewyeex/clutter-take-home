@@ -1,13 +1,17 @@
-.padding-wrapper {
+#search-pane-container {
+  height: 100vh;
+}
+
+#search-pane-container .padding-wrapper {
   padding: 1em;
 }
 
-#search-list-container {
+#search-pane-container #search-list-container {
   height: 100%;
   overflow-y: auto;
 }
 
-#search-spin {
+#search-pane-container #search-spin {
   justify-content: center;
   align-items: center;
   display: flex;

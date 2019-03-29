@@ -29,11 +29,7 @@ export default class SearchPane extends Component {
   handleSearch = async (e) => {
     if (e.key === 'Enter') {
       const term = e.target.value
-      /*
-        isLoadingSearchRequest state is used
-        to help handle the UI/UX for an async request.
-        It will be used for rendering content/spin icon
-      */
+      // isLoadingSearchRequest is used to handle ui/ux for async interactions on the page
       this.setState({
         term,
         isLoadingSearchRequest: true
@@ -56,7 +52,7 @@ export default class SearchPane extends Component {
       selectedMovieID
     } = this.props
     return(
-      <Row style={{ height: '100vh' }}>
+      <Row id='search-pane-container'>
         <Col span={24}>
           <div className='padding-wrapper'>
             <Search
@@ -74,9 +70,9 @@ export default class SearchPane extends Component {
                 <Spin indicator={antIcon} />
               </div> :
               movieResults.map(
-                movie => 
+                movie =>
                   <MovieItem
-                    key={movie.id} 
+                    key={movie.id}
                     handleOnClick={handleSelectedMovie}
                     selectedMovieID={selectedMovieID}
                     {...movie} />
@@ -90,6 +86,10 @@ export default class SearchPane extends Component {
 }
 
 SearchPane.propTypes = {
-  handleSelectedMovie: PropTypes.func.isRequired
+  handleSelectedMovie: PropTypes.func.isRequired,
+  selectedMovieID: PropTypes.number
 }
-SearchPane.defaultProps = {}
+SearchPane.defaultProps = {
+  handleSelectedMovie: () => console.error('callback unavailable'),
+  selectedMovieID: -1
+}

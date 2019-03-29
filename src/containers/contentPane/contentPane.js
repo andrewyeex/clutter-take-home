@@ -58,15 +58,15 @@ export default class ContentPane extends Component {
       overview,
     } = selectedMovie
     return(
-      <Row style={{ height: '100%', padding: '1em' }}>
-          <Row id='content-pane-container'>
+      <Row id='content-pane-outer'>
+          <Row id='content-pane-inner'>
           {
             isLoadingCastMemberRequest ?
             <div id='main-spin'>
               <Spin indicator={antIcon} />
             </div> :
             <React.Fragment>
-              <Col xs={24} sm={24} md={8} lg={8} xl={8} style={{ textAlign: 'center', paddingTop: '0.5em' }}>
+              <Col xs={24} sm={24} md={8} lg={8} xl={8} id='main-img'>
                 <img src={img} alt='movie poster'/>
               </Col>
               <Col xs={24} sm={24} md={14} lg={14} xl={14} id='content-pane' className={!!paginatedCastMember[0].length ? `cast` : ''}>
@@ -103,6 +103,32 @@ export default class ContentPane extends Component {
 
 
 ContentPane.propTypes = {
-  selectedMovie: PropTypes.shape()
+  selectedMovie: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    date: PropTypes.string.isRequired,
+    img: PropTypes.string,
+    overview: PropTypes.string.isRequired,
+    poster_path: PropTypes.string.isRequired,
+    handleOnClick: PropTypes.func.isRequired,
+    release_date: PropTypes.string.isRequired,
+    selectedMovieID: PropTypes.number,
+    title: PropTypes.string.isRequired,
+    tmdb_id: PropTypes.number.isRequired
+  }).isRequired,
+  isLoadingCastMemberRequest: PropTypes.bool.isRequired,
+  paginatedCastMember: PropTypes.array.isRequired
 }
-ContentPane.defaultProps = {}
+ContentPane.defaultProps = {
+  selectedMovie: {
+    id: 0,
+    date: '',
+    overview: '',
+    poster_path: '',
+    handleOnClick: () => console.error('callback unavailable'),
+    release_date: '',
+    title: '',
+    tmdb_id: 0
+  },
+  isLoadingCastMemberRequest: false,
+  paginatedCastMember: [[]]
+}
