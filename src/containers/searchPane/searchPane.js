@@ -28,9 +28,16 @@ export default class SearchPane extends Component {
 
   handleSearch = async (term) => {
     // isLoadingSearchRequest is used to handle ui/ux for async interactions on the page
-    this.setState({ term, isLoadingSearchRequest: true })
+    this.setState({
+      term,
+      movieResults: [],
+      isLoadingSearchRequest: true
+    })
     const movieResults = await getMoviesByTerm(term)
-    this.setState({ movieResults, isLoadingSearchRequest: false })
+    this.setState({
+      ...{...(movieResults && {movieResults})},
+      isLoadingSearchRequest : false
+    })
   }
 
   render() {
