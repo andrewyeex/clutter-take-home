@@ -84,6 +84,7 @@ ContentPane.propTypes = {
   handleOnNextPagination: PropTypes.func.isRequired,
   handleOnPrevPagination: PropTypes.func.isRequired
 }
+
 ContentPane.defaultProps = {
   selectedMovie: {
     overview: '',

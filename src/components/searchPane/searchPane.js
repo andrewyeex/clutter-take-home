@@ -58,12 +58,26 @@ export const SearchPane = React.memo(function SearchPane({
 
 
 SearchPane.propTypes = {
+  movieResults: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      tmdb_id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      overview: PropTypes.string.isRequired,
+      poster_path: PropTypes.string.isRequired,
+      release_date: PropTypes.string.isRequired
+    })
+  ).isRequired,
+  selectedMovieID: PropTypes.number,
+  isLoadingSearchRequest: PropTypes.bool,
   handleSelectedMovie: PropTypes.func.isRequired,
-  movieResults: PropTypes.array.isRequired,
-  selectedMovieID: PropTypes.number
+  handleSearch: PropTypes.func.isRequired
 }
+
 SearchPane.defaultProps = {
   movieResults : [],
+  selectedMovieID: -1,
+  isLoadingSearchRequest: false,
   handleSelectedMovie: () => console.error('callback unavailable'),
-  selectedMovieID: -1
+  handleSearch: () => console.error('callback unavailable')
 }
