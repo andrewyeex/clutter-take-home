@@ -17,7 +17,7 @@ const { Search } = Input
 const antIcon = <Icon type='loading' style={{ fontSize: 48, color: '#808080' }} spin />
 
 export default class SearchPane extends Component {
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = {
       isLoadingSearchRequest: false,
@@ -26,23 +26,14 @@ export default class SearchPane extends Component {
     }
   }
 
-  handleSearch = async (e) => {
-    if (e.key === 'Enter') {
-      const term = e.target.value
-      // isLoadingSearchRequest is used to handle ui/ux for async interactions on the page
-      this.setState({
-        term,
-        isLoadingSearchRequest: true
-      })
-      const movieResults = await getMoviesByTerm(term)
-      this.setState({
-        movieResults,
-        isLoadingSearchRequest: false
-      })
-    }
+  handleSearch = async (term) => {
+    // isLoadingSearchRequest is used to handle ui/ux for async interactions on the page
+    this.setState({ term, isLoadingSearchRequest: true })
+    const movieResults = await getMoviesByTerm(term)
+    this.setState({ movieResults, isLoadingSearchRequest: false })
   }
 
-  render(){
+  render() {
     const {
       isLoadingSearchRequest,
       movieResults
@@ -56,8 +47,9 @@ export default class SearchPane extends Component {
         <Col span={24}>
           <div className='padding-wrapper'>
             <Search
+              id='search-pane-input'
               placeholder='Enter movie term'
-              onKeyPress={this.handleSearch}
+              onSearch={this.handleSearch}
               style={{ width: '100%' }}
             />
           </div>

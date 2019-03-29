@@ -13,10 +13,11 @@ import 'antd/dist/antd.css'
 import './main.css'
 
 export default class Main extends Component {
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state =  {
       selectedMovie : {},
+      selectedMovieTitle: '',
       isLoadingCastMemberRequest: false,
       paginatedCastMember : []
     }
@@ -27,29 +28,25 @@ export default class Main extends Component {
   }
 
   handleSelectedMovie = async (selectedMovie) => {
-    console.log('e2124')
     if (selectedMovie.id === this.state.selectedMovie.id) return false
     // isLoadingCastMemberRequest used to handle ui/ux for async interactions on the page
     this.setState({ isLoadingCastMemberRequest: true })
     const castMember = await getCastMemberByID(selectedMovie.id)
-    console.log({ castMember })
-    if (castMember) {
-      const paginatedCastMember = paginateArray(castMember, 6)
-      this.setState({
-        selectedMovie,
-        paginatedCastMember,
-        isLoadingCastMemberRequest: false
-      })
-      return true
-    }
-    this.setState({ isLoadingCastMemberRequest: false })
-    return false
+    const paginatedCastMember = paginateArray(castMember, 6)
+    const { title, release_date } = selectedMovie
+    this.setState({
+      selectedMovie,
+      selectedMovieTitle: title + ` (${new Date(release_date).getFullYear()})`,
+      paginatedCastMember,
+      isLoadingCastMemberRequest: false
+    })
   }
 
   render() {
     const {
       isLoadingCastMemberRequest,
       paginatedCastMember,
+      selectedMovieTitle,
       selectedMovie
     } = this.state
 
@@ -61,7 +58,8 @@ export default class Main extends Component {
             <ContentPane
               isLoadingCastMemberRequest={isLoadingCastMemberRequest}
               paginatedCastMember={paginatedCastMember}
-              selectedMovie={selectedMovie}/>
+              selectedMovie={selectedMovie}
+              selectedMovieTitle={selectedMovieTitle}/>
         }
         </Col>
           <Col xs={24} sm={24} md={10} lg={8} xl={6} id='main-right'>

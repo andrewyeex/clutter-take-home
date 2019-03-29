@@ -17,17 +17,11 @@ const { Title, Text } = Typography
 const antIcon = <Icon type='loading' style={{ fontSize: 48, color: '#808080'}} spin />
 
 export default class ContentPane extends Component {
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = {
       currentPagination: 0
     }
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return (this.props.selectedMovie.id !== nextProps.selectedMovie.id) ||
-            (this.state.currentPagination !== nextState.currentPagination) ||
-            (this.props.isLoadingCastMemberRequest !== nextProps.isLoadingCastMemberRequest)
   }
 
   handleOnNextPagination = () => {
@@ -44,18 +38,17 @@ export default class ContentPane extends Component {
     })
   }
 
-  render(){
+  render() {
     const { currentPagination } = this.state
     const {
       selectedMovie,
+      selectedMovieTitle,
       paginatedCastMember,
       isLoadingCastMemberRequest
     } = this.props
     const {
-      release_date : date,
       poster_path : img,
-      title,
-      overview,
+      overview
     } = selectedMovie
     return(
       <Row id='content-pane-outer'>
@@ -71,7 +64,7 @@ export default class ContentPane extends Component {
               </Col>
               <Col xs={24} sm={24} md={14} lg={14} xl={14} id='content-pane' className={!!paginatedCastMember[0].length ? `cast` : ''}>
                 <Row>
-                  <Title>{title + ` (${new Date(date).getFullYear()})`}</Title>
+                  <Title>{selectedMovieTitle}</Title>
                 </Row>
                 <Row>
                   <Title level={2}>Overview</Title>
