@@ -27,16 +27,23 @@ export default class Main extends Component {
   }
 
   handleSelectedMovie = async (selectedMovie) => {
-    if (selectedMovie.id === this.state.selectedMovie.id) return
+    console.log('e2124')
+    if (selectedMovie.id === this.state.selectedMovie.id) return false
     // isLoadingCastMemberRequest used to handle ui/ux for async interactions on the page
     this.setState({ isLoadingCastMemberRequest: true })
     const castMember = await getCastMemberByID(selectedMovie.id)
-    const paginatedCastMember = paginateArray(castMember, 6)
-    this.setState({
-      selectedMovie,
-      paginatedCastMember,
-      isLoadingCastMemberRequest: false
-    })
+    console.log({ castMember })
+    if (castMember) {
+      const paginatedCastMember = paginateArray(castMember, 6)
+      this.setState({
+        selectedMovie,
+        paginatedCastMember,
+        isLoadingCastMemberRequest: false
+      })
+      return true
+    }
+    this.setState({ isLoadingCastMemberRequest: false })
+    return false
   }
 
   render() {
