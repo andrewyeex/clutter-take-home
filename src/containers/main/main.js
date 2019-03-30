@@ -5,7 +5,7 @@ import {
 } from 'antd'
 
 import { SearchPane } from '../../components/searchPane/searchPane'
-import { ContentPane } from '../../components/contentPane/contentPane'
+import { MovieContent } from '../../components/movieContent/movieContent'
 import { paginateArray } from '../../helpers/utils'
 import {
   getCastMemberByID,
@@ -96,7 +96,7 @@ export default class Main extends Component {
         <Col xs={24} sm={24} md={14} lg={16} xl={18} id='main-left'>
         {
           !!Object.keys(selectedMovie).length &&
-            <ContentPane
+            <MovieContent
               selectedMovie={selectedMovie}
               currentPagination={currentPagination}
               paginatedCastMember={paginatedCastMember}

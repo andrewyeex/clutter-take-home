@@ -12,12 +12,12 @@ import {
 import { PaginatedCastMember } from '../paginatedCastMember/paginatedCastMember'
 import { getBaseImgURL } from '../../helpers/utils'
 
-import './contentPane.css'
+import './movieContent.css'
 
 const { Title, Text } = Typography
 const antIcon = <Icon type='loading' style={{ fontSize: 48, color: '#fff'}} spin />
 
-export const ContentPane = React.memo(function ContentPane({
+export const MovieContent = React.memo(function MovieContent({
   selectedMovie : {
     poster,
     overview,
@@ -79,7 +79,7 @@ export const ContentPane = React.memo(function ContentPane({
 
 
 
-ContentPane.propTypes = {
+MovieContent.propTypes = {
   selectedMovie: PropTypes.shape({
     overview: PropTypes.string.isRequired,
     poster: PropTypes.string.isRequired,
@@ -100,7 +100,7 @@ ContentPane.propTypes = {
   handleOnPrevPagination: PropTypes.func.isRequired
 }
 
-ContentPane.defaultProps = {
+MovieContent.defaultProps = {
   selectedMovie: {
     overview: '',
     poster: '',

@@ -1,11 +1,11 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { ContentPane } from './contentPane'
+import { MovieContent } from './movieContent'
 
 describe('Content Pane', () => {
   describe('Renders', () => {
     let wrapper
-    beforeEach(() => { wrapper = shallow(<ContentPane />) })
+    beforeEach(() => { wrapper = shallow(<MovieContent />) })
     test('Did not crash', () => { expect(wrapper).toExist() })
     test('Shows the loading spin when isLoadingCastMemberRequest is true', () => {
       wrapper.setProps({ isLoadingCastMemberRequest: true })
@@ -34,11 +34,11 @@ describe('Content Pane', () => {
   describe('Default Props', () => {
     test('handleOnNextPagination', () => {
       const handleOnNextPagination = () => console.error('callback unavailable')
-      expect(ContentPane.defaultProps.handleOnNextPagination()).toEqual(handleOnNextPagination())
+      expect(MovieContent.defaultProps.handleOnNextPagination()).toEqual(handleOnNextPagination())
     })
     test('handleOnPrevPagination', () => {
       const handleOnPrevPagination = () => console.error('callback unavailable')
-      expect(ContentPane.defaultProps.handleOnPrevPagination()).toEqual(handleOnPrevPagination())
+      expect(MovieContent.defaultProps.handleOnPrevPagination()).toEqual(handleOnPrevPagination())
     })
   })
 })
