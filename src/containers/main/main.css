@@ -1,7 +1,9 @@
+h1, h2, h3, span, p { color: #fff !important; }
+
 #main-left {
   height: 100vh;
   padding: 1em;
-  background: linear-gradient(to top, #fff, #b4d8b0);
+  background: linear-gradient(to top, #bdd2c6, #85b47f);
   overflow: auto;
 }
 

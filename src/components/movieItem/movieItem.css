@@ -6,17 +6,12 @@
 
 .movie-item:hover,
 .movie-item.selected {
-  background-image: linear-gradient(to top, #2d312e, #103110);
+  background: #d1efbea1;
 }
 
 .movie-item span {
   height: 100%;
   width: 60%;
-}
-
-.movie-item span,
-.movie-item h3 {
-  color: #fff;
 }
 
 .movie-item img {

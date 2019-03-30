@@ -13,7 +13,7 @@ import { MovieItem } from '../movieItem/movieItem'
 import './searchPane.css'
 
 const { Search } = Input
-const antIcon = <Icon type='loading' style={{ fontSize: 48, color: '#808080' }} spin />
+const antIcon = <Icon type='loading' style={{ fontSize: 48, color: '#fff' }} spin />
 
 export const SearchPane = React.memo(function SearchPane({
   movieResults,
@@ -39,7 +39,7 @@ export const SearchPane = React.memo(function SearchPane({
           {
             isLoadingSearchRequest ?
             <div id='search-spin'>
-              <Spin indicator={antIcon} />
+              <Spin indicator={antIcon} color='#fff'/>
             </div> :
             movieResults.map(
               movie =>

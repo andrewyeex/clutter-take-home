@@ -8,10 +8,8 @@
 }
 
 #content-pane > div:first-of-type {
-  /* text-align: center; */
   overflow: auto;
   padding: 1em;
-  margin-bottom: 2em;
 }
 
 #content-pane #cast-member-container{

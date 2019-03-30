@@ -15,7 +15,7 @@ import { getBaseImgURL } from '../../helpers/utils'
 import './contentPane.css'
 
 const { Title, Text } = Typography
-const antIcon = <Icon type='loading' style={{ fontSize: 48, color: '#808080'}} spin />
+const antIcon = <Icon type='loading' style={{ fontSize: 48, color: '#fff'}} spin />
 
 export const ContentPane = React.memo(function ContentPane({
   selectedMovie : {
