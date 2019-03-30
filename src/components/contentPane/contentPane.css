@@ -5,22 +5,11 @@
 
 #content-pane-inner {
   height: 100%;
-  padding: 2em 0em;
-  background: #fff;
-  box-shadow: 0 3px 6px 0 rgb(201, 201, 201);
 }
 
-#main-img {
-  text-align: center;
-  padding-top: 0.5em;
-}
-
-#content-pane > div:nth-of-type(2){
-  margin-bottom: 2em;
-}
-
-#content-pane > div:nth-of-type(3){
-  overflow-y: auto;
+#content-pane > div:first-of-type {
+  overflow: auto;
+  padding: 1em;
 }
 
 #content-pane #cast-member-container{
@@ -57,12 +46,12 @@
 }
 
 #custom-paginated-cast-member .small-circular-btn:active {
-  background: #666;
+  background: rgb(98, 98, 98);
 }
 
 #custom-paginated-cast-member .small-circular-btn.inactive {
-  background: #eee;
-  border: 1px solid #eee;
+  background: #e6e6e6;
+  border: 1px solid #e6e6e6;
   cursor: not-allowed;
 }
 

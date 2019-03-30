@@ -1,15 +1,28 @@
+h1, h2, h3, span, p { color: #fff !important; }
+
 #main-left {
   height: 100vh;
   padding: 1em;
-  background: linear-gradient(to top, #fff, #ccc);
+  background: linear-gradient(to top, #bdd2c6, #85b47f);
   overflow: auto;
 }
 
-#main-right { box-shadow: -5px 0px 20px 1px #aaa; }
+#main-right { box-shadow: 5px 0px 15px 1px #505050; }
 
 #main-spin {
   justify-content: center;
   align-items: center;
   display: flex;
   height: 100%;
+}
+
+#main-img {
+  text-align: center;
+}
+
+#poster {
+  border-style: none;
+  border: .5em solid #fff;
+  border-radius: .5em;
+  margin-bottom: 2em;
 }

@@ -1,17 +1,20 @@
 .movie-item {
-  padding: 1em 1em 1em 1em;
-  margin-bottom: 1em;
+  padding: 1em;
   transition: 0.25s;
   cursor: pointer;
-  box-shadow: 0 3px 6px 0 rgb(201, 201, 201);
 }
 
 .movie-item:hover,
 .movie-item.selected {
-  background: rgb(220, 220, 220);
+  background: #d1efbea1;
 }
 
 .movie-item span {
   height: 100%;
   width: 60%;
+}
+
+.movie-item img {
+  border: 2px solid #fff;
+  border-radius: .25em;
 }

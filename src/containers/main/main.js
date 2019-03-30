@@ -57,6 +57,7 @@ export default class Main extends Component {
     this.setState({
       term,
       movieResults: [],
+      selectedMovie: {},
       isLoadingSearchRequest: true
     })
     const movieResults = await getMoviesByTerm(term)
