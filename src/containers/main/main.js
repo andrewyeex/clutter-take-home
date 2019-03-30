@@ -4,7 +4,7 @@ import {
   Col
 } from 'antd'
 
-import { SearchPane } from '../../components/searchPane/searchPane'
+import { MovieSearch } from '../../components/movieSearch/movieSearch'
 import { MovieContent } from '../../components/movieContent/movieContent'
 import { paginateArray } from '../../helpers/utils'
 import {
@@ -106,7 +106,7 @@ export default class Main extends Component {
         }
         </Col>
           <Col xs={24} sm={24} md={10} lg={8} xl={6} id='main-right'>
-            <SearchPane
+            <MovieSearch
               movieResults={movieResults}
               selectedMovieID={selectedMovie.id}
               handleSearch={this.handleSearch}

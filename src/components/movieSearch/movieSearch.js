@@ -10,12 +10,12 @@ import PropTypes from 'prop-types'
 
 import { MovieItem } from '../movieItem/movieItem'
 
-import './searchPane.css'
+import './movieSearch.css'
 
 const { Search } = Input
 const antIcon = <Icon type='loading' style={{ fontSize: 48, color: '#fff' }} spin />
 
-export const SearchPane = React.memo(function SearchPane({
+export const MovieSearch = React.memo(function MovieSearch({
   movieResults,
   isLoadingSearchRequest,
   selectedMovieID,
@@ -57,7 +57,7 @@ export const SearchPane = React.memo(function SearchPane({
 })
 
 
-SearchPane.propTypes = {
+MovieSearch.propTypes = {
   movieResults: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
@@ -74,7 +74,7 @@ SearchPane.propTypes = {
   handleSearch: PropTypes.func.isRequired
 }
 
-SearchPane.defaultProps = {
+MovieSearch.defaultProps = {
   movieResults : [],
   selectedMovieID: -1,
   isLoadingSearchRequest: false,

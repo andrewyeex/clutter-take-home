@@ -1,26 +1,26 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { SearchPane } from './searchPane'
+import { MovieSearch } from './movieSearch'
 
 import movieResults from '../../fixtures/movies.json'
 
-describe('SearchPane Container', () => {
+describe('MovieSearch Container', () => {
   let wrapper
-  beforeEach(() => { wrapper = shallow(<SearchPane />) })
+  beforeEach(() => { wrapper = shallow(<MovieSearch />) })
 
   test('Renders without crashing', () => { expect(wrapper).toExist() })
 
   describe('Default Props', () => {
     test('handleSelectedMovie', () => {
       const handleSelectedMovie = () => console.error('callback unavailable')
-      expect(SearchPane.defaultProps.handleSelectedMovie()).toEqual(handleSelectedMovie())
+      expect(MovieSearch.defaultProps.handleSelectedMovie()).toEqual(handleSelectedMovie())
     })
     test('handleSearch', () => {
       const handleSearch = () => console.error('callback unavailable')
-      expect(SearchPane.defaultProps.handleSearch()).toEqual(handleSearch())
+      expect(MovieSearch.defaultProps.handleSearch()).toEqual(handleSearch())
     })
     test('selectedMovieID', () => {
-      expect(SearchPane.defaultProps.selectedMovieID).toEqual(-1)
+      expect(MovieSearch.defaultProps.selectedMovieID).toEqual(-1)
     })
   })
 

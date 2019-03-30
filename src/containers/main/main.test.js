@@ -37,6 +37,6 @@ describe('Main Container', () => {
 
   describe('Render', () => {
     test('MovieContent Container', () => {})
-    test('SearchPane Container', () => {})
+    test('MovieSearch Container', () => {})
   })
 })
