@@ -19,7 +19,15 @@ Test coverage is currently at 63% -> aiming for 100%
 // note: only tested for code coverage and not for thoroughness
 ```
 
-## Demo
+## Web
 ![GIF #1](https://gyazo.com/a870d4c4e7018a4fc38a09ad303c5b6d.gif)
 
 ![GIF #2](https://gyazo.com/f479c620ca949c6d6964aac1598f8433.gif)
+
+## Tablet
+
+![GIF #3](https://gyazo.com/86c2c6237825aefe3acf22b14bdf37d8.gif)
+
+## Mobile
+
+![GIF #4](https://gyazo.com/2e12b5da5174826eb295e40ce6f6aa85.gif)
