@@ -5,7 +5,8 @@ import {
   Col,
   Typography,
   Icon,
-  Spin
+  Spin,
+  Divider
 } from 'antd'
 
 import { PaginatedCastMember } from '../paginatedCastMember/paginatedCastMember'
@@ -37,21 +38,27 @@ export const ContentPane = React.memo(function ContentPane({
             <Spin indicator={antIcon} />
           </div> :
           <React.Fragment>
-            <Col xs={24} sm={24} md={8} lg={8} xl={8} id='main-img'>
-              <img src={poster} alt='movie poster'/>
+            <Col xs={24} sm={24} md={24} lg={8} xl={8} id='main-img'>
+              <img id='poster' src={poster} alt='movie poster'/>
             </Col>
-            <Col xs={24} sm={24} md={14} lg={14} xl={14} id='content-pane' className={!!paginatedCastMember[0].length ? `cast` : ''}>
+            <Col xs={24} sm={24} md={24} lg={14} xl={14} id='content-pane' className={!!paginatedCastMember[0].length ? `cast` : ''}>
               <Row>
                 <Title>{title}</Title>
               </Row>
               <Row>
-                <Title level={2}>Overview</Title>
+                <Divider orientation='left'>
+                  <Title level={2}>Overview</Title>
+                </Divider>
                 <Text>{overview}</Text>
               </Row>
               {
                 !!paginatedCastMember[0].length &&
                 <div id='content-pane-cast'>
-                  <Title level={2}>Cast</Title>
+                  <Divider orientation='left'>
+                    <Title level={2}>Cast</Title>
+                  </Divider>
+                  {/* <Title level={3}>Cast</Title>
+                  <Divider /> */}
                   <PaginatedCastMember
                     imgRootUrl={getBaseImgURL(poster)}
                     size={paginatedCastMember.length}

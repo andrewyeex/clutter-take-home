@@ -20,8 +20,4 @@ Test coverage is currently at 63% -> aiming for 100%
 ```
 
 ## Demo
-![GIF #1](https://gyazo.com/321922a915ea4d53eb4662055669434f.gif)
-
-![GIF #2](https://gyazo.com/4d931704a2595dd278503cc8f03d7025.gif)
-
-![GIF #3](https://gyazo.com/f674c51cfb28df8e927c3a4a40edf558.gif)
+![GIF #1](https://gyazo.com/4aae783189e19e421b656b4526931e18.gif)

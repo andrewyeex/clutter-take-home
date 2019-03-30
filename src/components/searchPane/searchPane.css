@@ -1,8 +1,9 @@
 #search-pane-container {
   height: 100vh;
+  background-image: linear-gradient(to top, #bfd2c8, #83b37c);
 }
 
-#search-pane-container .padding-wrapper {
+.padding-wrapper {
   padding: 1em;
 }
 

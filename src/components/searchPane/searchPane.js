@@ -35,7 +35,7 @@ export const SearchPane = React.memo(function SearchPane({
         </div>
       </Col>
       <Col span={24} style={{ height: 'calc(100% - 60px)' }}>
-        <div id='search-list-container' className='padding-wrapper'>
+        <div id='search-list-container'>
           {
             isLoadingSearchRequest ?
             <div id='search-spin'>
