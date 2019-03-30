@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { CastMemberItem } from '../castMemberItem/castMemberItem'
+import { MovieCastItem } from '../movieCastItem/movieCastItem'
 
 import {
   Row,
@@ -25,7 +25,7 @@ export const PaginatedCastMember = React.memo(function PaginatedCastMember({
             profile_path : img,
             tmdb_id
           }) =>
-            <CastMemberItem
+            <MovieCastItem
               key={tmdb_id}
               name={name}
               img={img ? `${imgRootUrl}${img}` : ''}/>

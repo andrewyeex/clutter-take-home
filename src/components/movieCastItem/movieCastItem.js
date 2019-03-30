@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import { Avatar } from 'antd'
 
-export const CastMemberItem = React.memo(function CastMemberItem({
+export const MovieCastItem = React.memo(function MovieCastItem({
   name,
   img
 }){
@@ -20,11 +20,11 @@ export const CastMemberItem = React.memo(function CastMemberItem({
   )
 })
 
-CastMemberItem.propTypes = {
+MovieCastItem.propTypes = {
   name: PropTypes.string.isRequired,
   img: PropTypes.string.isRequired
 }
-CastMemberItem.defaultProps = {
+MovieCastItem.defaultProps = {
   name: '',
   img: ''
 }

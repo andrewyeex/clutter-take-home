@@ -5,17 +5,32 @@ import {
   Col,
   Typography,
   Icon,
-  Spin,
-  Divider
+  Spin
 } from 'antd'
 
-import { PaginatedCastMember } from '../paginatedCastMember/paginatedCastMember'
+import { MovieCast } from '../movieCast/movieCast'
 import { getBaseImgURL } from '../../helpers/utils'
+import { MovieInfo } from '../movieInfo/movieInfo'
 
 import './movieContent.css'
 
-const { Title, Text } = Typography
+const { Title } = Typography
 const antIcon = <Icon type='loading' style={{ fontSize: 48, color: '#fff'}} spin />
+const MovieTitle = ({title}) => (
+  <Row>
+    <Title>{title}</Title>
+  </Row>
+)
+const MoviePoster = ({poster}) => (
+  <Col {...{xs: 24, sm: 24, md: 24, lg: 8, xl: 8, id: 'main-img'}}>
+    <img id='poster' src={poster} alt='movie poster'/>
+  </Col>
+)
+const MovieLoading = () => (
+  <div id='main-spin'>
+    <Spin indicator={antIcon} />
+  </div>
+)
 
 export const MovieContent = React.memo(function MovieContent({
   selectedMovie : {
@@ -24,60 +39,35 @@ export const MovieContent = React.memo(function MovieContent({
     title
   },
   currentPagination,
-  paginatedCastMember,
-  handleOnNextPagination,
-  handleOnPrevPagination,
+  paginatedCastMember: castMembers,
+  handleOnNextPagination: onNext,
+  handleOnPrevPagination: onPrev,
   isLoadingCastMemberRequest
 }){
+  const rightRiv = {xs: 24, sm: 24, md: 24, lg: 14, xl: 14, id: 'content-pane', className: !!castMembers[0].length ? `cast` : ''}
   return(
     <Row id='content-pane-outer'>
         <Row id='content-pane-inner'>
-        {
-          isLoadingCastMemberRequest ?
-          <div id='main-spin'>
-            <Spin indicator={antIcon} />
-          </div> :
+        {isLoadingCastMemberRequest ?
+          <MovieLoading /> :
           <React.Fragment>
-            <Col xs={24} sm={24} md={24} lg={8} xl={8} id='main-img'>
-              <img id='poster' src={poster} alt='movie poster'/>
+            <MoviePoster poster={poster} />
+            <Col {...rightRiv}>
+              <MovieTitle title={title} />
+              <MovieInfo header='Overview' content={overview} />
+              {!!castMembers[0].length &&
+                <MovieCast
+                  imgBaseURL={getBaseImgURL(poster)}
+                  castMembers={castMembers}
+                  currentPagination={currentPagination}
+                  onNext={onNext}
+                  onPrev={onPrev} />}
             </Col>
-            <Col xs={24} sm={24} md={24} lg={14} xl={14} id='content-pane' className={!!paginatedCastMember[0].length ? `cast` : ''}>
-              <Row>
-                <Title>{title}</Title>
-              </Row>
-              <Row>
-                <Divider orientation='left'>
-                  <Title level={2}>Overview</Title>
-                </Divider>
-                <Text>{overview}</Text>
-              </Row>
-              {
-                !!paginatedCastMember[0].length &&
-                <div id='content-pane-cast'>
-                  <Divider orientation='left'>
-                    <Title level={2}>Cast</Title>
-                  </Divider>
-                  {/* <Title level={3}>Cast</Title>
-                  <Divider /> */}
-                  <PaginatedCastMember
-                    imgRootUrl={getBaseImgURL(poster)}
-                    size={paginatedCastMember.length}
-                    current={currentPagination}
-                    castMembers={paginatedCastMember[currentPagination]}
-                    onNext={handleOnNextPagination}
-                    onPrev={handleOnPrevPagination}
-                  />
-                </div>
-              }
-            </Col>
-          </React.Fragment>
-        }
+          </React.Fragment>}
         </Row>
     </Row>
   )
 })
-
-
 
 MovieContent.propTypes = {
   selectedMovie: PropTypes.shape({
