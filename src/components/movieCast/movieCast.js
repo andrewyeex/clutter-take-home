@@ -8,15 +8,17 @@ import {
 } from 'antd'
 
 import { MovieCastItem } from '../movieCastItem/movieCastItem'
+import { MovieCastButton } from '../movieCastButton/movieCastButton'
 
 const { Title } = Typography
 
 export const MovieCast = React.memo(function MovieCast({
   imgBaseURL,
+  castSize,
   castMembers,
-  currentPagination: current,
-  onNext,
-  onPrev
+  currentPagination,
+  handleOnNextPagination,
+  handleOnPrevPagination
 }){
   return(
     <div id='content-pane-cast'>
@@ -34,24 +36,42 @@ export const MovieCast = React.memo(function MovieCast({
               <MovieCastItem
                 key={tmdb_id}
                 name={name}
-                img={img ? `${imgBaseURL}${img}` : ''}/>
+                img={!!img ? `${imgBaseURL}${img}` : ''}/>
           )}
         </div>
         <div>
-          <div
+          <MovieCastButton
             id='prev-btn'
-            onClick={onPrev} // will this work if inactive ?
-            className={`small-circular-btn${current === 0 ? ' inactive' : ''}`}>
-            <Icon type="left" />
-          </div>
-          <div
+            className={`small-circular-btn${currentPagination === 0 ? ' inactive' : ''}`}
+            onClick={handleOnPrevPagination}
+            iconJSX={<Icon type="left" />}
+          />
+          <MovieCastButton
             id='next-btn'
-            onClick={onNext}
-            className={`small-circular-btn${current === castMembers.length-1 ? ' inactive' : ''}`}>
-            <Icon type="right" />
-          </div>
+            className={`small-circular-btn${currentPagination === castSize-1 ? ' inactive' : ''}`}
+            onClick={handleOnNextPagination}
+            iconJSX={<Icon type="right" />}
+          />
         </div>
       </Row>
     </div>
   )
 })
+
+MovieCast.propTypes = {
+  imgBaseURL: PropTypes.string.isRequired,
+  castMembers: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        profile_path: PropTypes.string,
+        tmdb_id: PropTypes.number.isRequired
+      })
+  ).isRequired,
+  currentPagination: PropTypes.number.isRequired,
+  handleOnNextPagination: PropTypes.func.isRequired,
+  handleOnPrevPagination: PropTypes.func.isRequired
+}
+
+MovieCast.defaultProps = {
+  castMembers: [[]]
+}

@@ -10,10 +10,8 @@ export const MovieCastItem = React.memo(function MovieCastItem({
   return(
     <div className='cast-member'>
       <Avatar
-        {...{
-          size: 100,
-          ...(img ? {src: img} : {icon: 'user'})
-        }}
+        size={100}
+        {...{...(img ? {src: img} : {icon: 'user'})}}
       />
       <p className='name'>{name}</p>
     </div>
@@ -23,8 +21,4 @@ export const MovieCastItem = React.memo(function MovieCastItem({
 MovieCastItem.propTypes = {
   name: PropTypes.string.isRequired,
   img: PropTypes.string.isRequired
-}
-MovieCastItem.defaultProps = {
-  name: '',
-  img: ''
 }

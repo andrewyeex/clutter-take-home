@@ -20,13 +20,12 @@ export default class Main extends Component {
     super(props)
     this.state =  {
       term: '',
+      castMembers: [],
       movieResults: [],
-      isLoadingSearchRequest: false,
-      selectedMovie : {},
-      selectedMovieTitle: '',
-      isLoadingCastMemberRequest: false,
-      paginatedCastMember : [],
-      currentPagination: 0
+      selectedMovie: {},
+      currentPagination: 0,
+      isLoadingCastMember: false,
+      isLoadingSearch: false,
     }
   }
 
@@ -38,18 +37,20 @@ export default class Main extends Component {
     release_date
   }) => {
     if (id === this.state.selectedMovie.id) return false
-    this.setState({ isLoadingCastMemberRequest: true })
-    const castMember = await getCastMemberByID(id)
-    const paginatedCastMember = paginateArray(castMember, 6)
     this.setState({
+      currentPagination: 0,
+      isLoadingCastMember: true
+    })
+    const castMembers = await getCastMemberByID(id)
+    this.setState({
+      castMembers: paginateArray(castMembers, 6),
       selectedMovie: {
         id,
         poster,
         overview,
         title: title + ` (${new Date(release_date).getFullYear()})`
       },
-      paginatedCastMember,
-      isLoadingCastMemberRequest: false
+      isLoadingCastMember: false
     })
   }
 
@@ -58,18 +59,18 @@ export default class Main extends Component {
       term,
       movieResults: [],
       selectedMovie: {},
-      isLoadingSearchRequest: true
+      isLoadingSearch: true
     })
     const movieResults = await getMoviesByTerm(term)
     this.setState({
-      isLoadingSearchRequest : false,
-      ...{...(movieResults && {movieResults})}
+      isLoadingSearch : false,
+      ...{...(movieResults && { movieResults })}
     })
   }
 
   handleOnNextPagination = () => {
     this.setState(prevState => {
-      if (prevState.currentPagination === prevState.paginatedCastMember.length-1) return
+      if (prevState.currentPagination === prevState.castMembers.length-1) return
       return { currentPagination: prevState.currentPagination + 1 }
     })
   }
@@ -83,24 +84,24 @@ export default class Main extends Component {
 
   render() {
     const {
+      castMembers,
       movieResults,
-      isLoadingSearchRequest,
-      isLoadingCastMemberRequest,
+      selectedMovie,
       currentPagination,
-      paginatedCastMember,
-      selectedMovie
+      isLoadingSearch,
+      isLoadingCastMember
     } = this.state
 
     return (
       <Row>
         <Col xs={24} sm={24} md={14} lg={16} xl={18} id='main-left'>
         {
-          !!Object.keys(selectedMovie).length &&
+          !!selectedMovie.id &&
             <MovieContent
+              castMembers={castMembers}
               selectedMovie={selectedMovie}
               currentPagination={currentPagination}
-              paginatedCastMember={paginatedCastMember}
-              isLoadingCastMemberRequest={isLoadingCastMemberRequest}
+              isLoadingCastMember={isLoadingCastMember}
               handleOnNextPagination={this.handleOnNextPagination}
               handleOnPrevPagination={this.handleOnPrevPagination}/>
         }
@@ -111,7 +112,7 @@ export default class Main extends Component {
               selectedMovieID={selectedMovie.id}
               handleSearch={this.handleSearch}
               handleSelectedMovie={this.handleSelectedMovie}
-              isLoadingSearchRequest={isLoadingSearchRequest}
+              isLoadingSearch={isLoadingSearch}
             />
           </Col>
       </Row>

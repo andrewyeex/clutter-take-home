@@ -22,7 +22,7 @@ export const MovieInfo = React.memo(function MovieContent({
   )
 })
 
-MovieInfo.PropTypes = {
+MovieInfo.propTypes = {
   header: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired
 }

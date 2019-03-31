@@ -6,7 +6,7 @@
 
 .movie-item:hover,
 .movie-item.selected {
-  background: #d1efbea1;
+  background: #c3e6cc;
 }
 
 .movie-item span {

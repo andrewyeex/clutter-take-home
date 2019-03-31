@@ -17,6 +17,7 @@
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, 1fr);
   margin-bottom: 1em;
+  min-height: 360px;
 }
 
 #content-pane #cast-member-container .cast-member {
@@ -35,8 +36,8 @@
   height: 3em;
   width: 3em;
   border-radius: 1.5em;
-  border: 1px solid #ccc;
-  background: #ccc;
+  border: 1px solid #c3e6cc;
+  background: #c3e6cc;
   line-height: 3em;
   text-align: center;
   color: #fff;
@@ -46,12 +47,13 @@
 }
 
 #custom-paginated-cast-member .small-circular-btn:active {
-  background: rgb(98, 98, 98);
+  background: #93ffc3;
+  border: #93ffc3;
 }
 
 #custom-paginated-cast-member .small-circular-btn.inactive {
-  background: #e6e6e6;
-  border: 1px solid #e6e6e6;
+  background: #e4efe8;
+  border: 1px solid #e4efe8;
   cursor: not-allowed;
 }
 
