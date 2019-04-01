@@ -3,7 +3,7 @@
  * Responsible for managing external request methods
  */
 
-const ROOT_URL = 'https://clutter-front-end-interview.herokuapp.com'
+export const ROOT_URL = 'https://clutter-front-end-interview.herokuapp.com'
 
 const _GET = async (url) => {
   try {

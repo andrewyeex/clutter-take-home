@@ -37,19 +37,21 @@ export default class Main extends Component {
     release_date
   }) => {
     if (id === this.state.selectedMovie.id) return false
-    this.setState({
-      currentPagination: 0,
-      isLoadingCastMember: true
-    })
+    this.setState({ currentPagination: 0, isLoadingCastMember: true })
     const castMembers = await getCastMemberByID(id)
     this.setState({
-      castMembers: paginateArray(castMembers, 6),
-      selectedMovie: {
-        id,
-        poster,
-        overview,
-        title: title + ` (${new Date(release_date).getFullYear()})`
-      },
+      ...{...(
+        Array.isArray(castMembers) && 
+        {
+          castMembers: paginateArray(castMembers, 6),
+          selectedMovie: {
+            id,
+            poster,
+            overview,
+            title: title + ` (${new Date(release_date).getFullYear()})`
+          }
+        }
+      )},
       isLoadingCastMember: false
     })
   }
