@@ -18,9 +18,9 @@ assuming the user has installed [yarn](https://yarnpkg.com/en/)
 ![alt test coverage](./testScreenShot.png)
 
 ## Web
-![GIF #1](https://gyazo.com/a870d4c4e7018a4fc38a09ad303c5b6d.gif)
-
-![GIF #2](https://gyazo.com/f479c620ca949c6d6964aac1598f8433.gif)
+![GIF #1](https://gyazo.com/4ddbddc9f798e4b1346b3fc626f67465.gif)
+![GIF #2](https://gyazo.com/b7831fc106fe335f46d4f3acc7f7e6b2.gif)
+![GIF #3](https://gyazo.com/2c60d1329d6aadf6e6a59a35e19035a3.gif)
 
 ## Tablet
 
