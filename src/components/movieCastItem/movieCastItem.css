@@ -1,0 +1,11 @@
+#cast-member-container .cast-member {
+  text-align: center;
+}
+
+#cast-member-container .cast-member img {
+  object-fit: cover;
+}
+
+#cast-member-container .cast-member p.name {
+  margin-top: 1em;
+}

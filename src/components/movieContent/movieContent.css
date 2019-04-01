@@ -1,10 +1,6 @@
-#content-pane-outer {
+#movie-content-container {
   height: 100%;
   padding: 1em;
-}
-
-#content-pane-inner {
-  height: 100%;
 }
 
 #content-pane > div:first-of-type {
@@ -18,45 +14,4 @@
   grid-template-rows: repeat(2, 1fr);
   margin-bottom: 1em;
   min-height: 360px;
-}
-
-#content-pane #cast-member-container .cast-member {
-  text-align: center;
-}
-
-#content-pane #cast-member-container .cast-member img {
-  object-fit: cover;
-}
-
-#content-pane #cast-member-container .cast-member p.name {
-  margin-top: 1em;
-}
-
-#custom-paginated-cast-member .small-circular-btn {
-  height: 3em;
-  width: 3em;
-  border-radius: 1.5em;
-  border: 1px solid #c3e6cc;
-  background: #c3e6cc;
-  line-height: 3em;
-  text-align: center;
-  color: #fff;
-  display: inline-block;
-  margin: 0em 1em;
-  cursor: pointer;
-}
-
-#custom-paginated-cast-member .small-circular-btn:active {
-  background: #93ffc3;
-  border: #93ffc3;
-}
-
-#custom-paginated-cast-member .small-circular-btn.inactive {
-  background: #e4efe8;
-  border: 1px solid #e4efe8;
-  cursor: not-allowed;
-}
-
-#custom-paginated-cast-member div:last-child {
-  text-align: center;
 }

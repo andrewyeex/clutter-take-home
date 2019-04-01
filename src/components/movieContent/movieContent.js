@@ -3,9 +3,7 @@ import PropTypes from 'prop-types'
 import {
   Row,
   Col,
-  Typography,
-  Icon,
-  Spin
+  Typography
 } from 'antd'
 
 import { MovieCast } from '../movieCast/movieCast'
@@ -31,30 +29,28 @@ export const MovieContent = React.memo(function MovieContent({
   handleOnPrevPagination,
 }){
   return(
-    <Row id='content-pane-outer'>
-        <Row id='content-pane-inner'>
-        {isLoadingCastMember ?
-          <MovieLoading id='main-spin'/> :
-          <React.Fragment>
-            <Col xs={24} sm={24} md={24} lg={8} xl={8} id='main-img'>
-              <img id='poster' src={poster} alt='movie poster'/>
-            </Col>
-            <Col xs={24} sm={24} md={24} lg={14} xl={14} id='content-pane' className={!!castMembers[0].length ? `cast` : ''}>
-              <Row>
-                <Title>{title}</Title>
-              </Row>
-              <MovieInfo header='Overview' content={overview} />
-              {!!castMembers[0].length &&
-                <MovieCast
-                  castSize={castMembers.length}
-                  castMembers={castMembers[currentPagination]}
-                  imgBaseURL={getBaseImgURL(poster)}
-                  currentPagination={currentPagination}
-                  handleOnNextPagination={handleOnNextPagination}
-                  handleOnPrevPagination={handleOnPrevPagination} />}
-            </Col>
-          </React.Fragment>}
-        </Row>
+    <Row id='movie-content-container'>
+    {isLoadingCastMember ?
+      <MovieLoading id='main-spin'/> :
+      <React.Fragment>
+        <Col xs={24} sm={24} md={24} lg={8} xl={8} id='main-img'>
+          <img id='poster' src={poster} alt='movie poster'/>
+        </Col>
+        <Col xs={24} sm={24} md={24} lg={14} xl={14} id='movie-content' className={!!castMembers[0].length ? `cast` : ''}>
+          <Row>
+            <Title>{title}</Title>
+          </Row>
+          <MovieInfo header='Overview' content={overview} />
+          {!!castMembers[0].length &&
+            <MovieCast
+              castSize={castMembers.length}
+              castMembers={castMembers[currentPagination]}
+              imgBaseURL={getBaseImgURL(poster)}
+              currentPagination={currentPagination}
+              handleOnNextPagination={handleOnNextPagination}
+              handleOnPrevPagination={handleOnPrevPagination} />}
+        </Col>
+      </React.Fragment>}
     </Row>
   )
 })

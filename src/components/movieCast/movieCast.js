@@ -10,6 +10,8 @@ import {
 import { MovieCastItem } from '../movieCastItem/movieCastItem'
 import { MovieCastButton } from '../movieCastButton/movieCastButton'
 
+import './movieCast.css'
+
 const { Title } = Typography
 
 export const MovieCast = React.memo(function MovieCast({
@@ -21,13 +23,13 @@ export const MovieCast = React.memo(function MovieCast({
   handleOnPrevPagination
 }){
   return(
-    <div id='content-pane-cast'>
+    <div id='movie-cast-container'> {/* id='content-pane-cast' */}
       <Divider orientation='left'>
         <Title level={2}>Cast</Title>
       </Divider>
-      <Row id='custom-paginated-cast-member'>
+      <Row id='movie-cast-member-container'> {/* id='custom-paginated-cast-member' */}
         <div id='cast-member-container'>
-          {castMembers.map(
+          {Array.isArray(castMembers) && castMembers.map(
             ({
               name,
               profile_path : img,
@@ -42,13 +44,13 @@ export const MovieCast = React.memo(function MovieCast({
         <div>
           <MovieCastButton
             id='prev-btn'
-            className={`small-circular-btn${currentPagination === 0 ? ' inactive' : ''}`}
+            className={currentPagination === 0 ? ' inactive' : ''}
             onClick={handleOnPrevPagination}
             iconJSX={<Icon type="left" />}
           />
           <MovieCastButton
             id='next-btn'
-            className={`small-circular-btn${currentPagination === castSize-1 ? ' inactive' : ''}`}
+            className={currentPagination === castSize-1 ? ' inactive' : ''}
             onClick={handleOnNextPagination}
             iconJSX={<Icon type="right" />}
           />
@@ -61,11 +63,11 @@ export const MovieCast = React.memo(function MovieCast({
 MovieCast.propTypes = {
   imgBaseURL: PropTypes.string.isRequired,
   castMembers: PropTypes.arrayOf(
-      PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        profile_path: PropTypes.string,
-        tmdb_id: PropTypes.number.isRequired
-      })
+    PropTypes.shape({
+      name: PropTypes.string,
+      profile_path: PropTypes.string,
+      tmdb_id: PropTypes.number
+    })
   ).isRequired,
   currentPagination: PropTypes.number.isRequired,
   handleOnNextPagination: PropTypes.func.isRequired,
@@ -73,5 +75,5 @@ MovieCast.propTypes = {
 }
 
 MovieCast.defaultProps = {
-  castMembers: [[]]
+  castMembers: []
 }
