@@ -46,11 +46,11 @@ describe('MovieCast', () => {
     })
     test('In between pagination', () => {
       wrapper.setProps({ currentPagination: 1 })
-      expect(wrapper.find('#prev-btn').props().className).toBe('small-circular-btn')
+      expect(wrapper.find('#prev-btn').props().className).toBe('')
     })
     test('At the end of pagination', () => {
       wrapper.setProps({ currentPagination: 1, castSize: 2 })
-      expect(wrapper.find('#next-btn').props().className).toBe('small-circular-btn inactive')
+      expect(wrapper.find('#next-btn').props().className).toBe(' inactive')
     })
   })
 })

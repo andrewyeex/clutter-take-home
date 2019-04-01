@@ -19,7 +19,6 @@ export default class Main extends Component {
   constructor(props) {
     super(props)
     this.state =  {
-      term: '',
       castMembers: [],
       movieResults: [],
       selectedMovie: {},
@@ -57,8 +56,8 @@ export default class Main extends Component {
   }
 
   handleSearch = async (term) => {
+    // if (!term || !term.match(/[a-z0-9]/gi)) return false
     this.setState({
-      term,
       movieResults: [],
       selectedMovie: {},
       isLoadingSearch: true
