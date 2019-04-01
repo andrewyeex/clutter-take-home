@@ -23,11 +23,11 @@ export const MovieCast = React.memo(function MovieCast({
   handleOnPrevPagination
 }){
   return(
-    <div id='movie-cast-container'> {/* id='content-pane-cast' */}
+    <div id='movie-cast-container'>
       <Divider orientation='left'>
         <Title level={2}>Cast</Title>
       </Divider>
-      <Row id='movie-cast-member-container'> {/* id='custom-paginated-cast-member' */}
+      <Row id='movie-cast-member-container'>
         <div id='cast-member-container'>
           {Array.isArray(castMembers) && castMembers.map(
             ({

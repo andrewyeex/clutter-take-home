@@ -21,11 +21,11 @@ export const MovieSearch = React.memo(function MovieSearch({
   handleSelectedMovie
 }){
   return(
-    <Row id='search-pane-container'>
+    <Row id='movie-search-container'>
       <Col span={24}>
         <div className='padding-wrapper'>
           <Search
-            id='search-pane-input'
+            id='movie-search-input'
             placeholder='Enter movie term'
             onSearch={handleSearch}
             style={{ width: '100%' }}
@@ -33,11 +33,11 @@ export const MovieSearch = React.memo(function MovieSearch({
         </div>
       </Col>
       <Col span={24} style={{ height: 'calc(100% - 60px)' }}>
-        <div id='search-list-container'>
+        <div id='movie-search-list-container'>
           {
             isLoadingSearch ?
             <MovieLoading id='search-spin' /> :
-            movieResults.map(
+            Array.isArray(movieResults) && movieResults.map(
               movie =>
                 <MovieItem
                   key={movie.id}
@@ -68,12 +68,4 @@ MovieSearch.propTypes = {
   isLoadingSearch: PropTypes.bool,
   handleSelectedMovie: PropTypes.func.isRequired,
   handleSearch: PropTypes.func.isRequired
-}
-
-MovieSearch.defaultProps = {
-  movieResults : [],
-  selectedMovieID: -1,
-  isLoadingSearch: false,
-  handleSelectedMovie: () => console.error('callback unavailable'),
-  handleSearch: () => console.error('callback unavailable')
 }

@@ -1,4 +1,4 @@
-#search-pane-container {
+#movie-search-container {
   height: 100vh;
   background-image: linear-gradient(to top, #bfd2c8, #83b37c);
 }
@@ -7,12 +7,12 @@
   padding: 1em;
 }
 
-#search-pane-container #search-list-container {
+#movie-search-container #movie-search-list-container {
   height: 100%;
   overflow-y: auto;
 }
 
-#search-pane-container #search-spin {
+#movie-search-container #search-spin {
   justify-content: center;
   align-items: center;
   display: flex;

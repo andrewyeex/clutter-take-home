@@ -1,3 +1,11 @@
 #movie-cast-member-container div:last-child {
   text-align: center;
 }
+
+#cast-member-container{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  margin-bottom: 1em;
+  min-height: 360px;
+}

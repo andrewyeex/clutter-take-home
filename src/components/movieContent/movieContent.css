@@ -2,16 +2,3 @@
   height: 100%;
   padding: 1em;
 }
-
-#content-pane > div:first-of-type {
-  overflow: auto;
-  padding: 1em;
-}
-
-#content-pane #cast-member-container{
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  margin-bottom: 1em;
-  min-height: 360px;
-}
