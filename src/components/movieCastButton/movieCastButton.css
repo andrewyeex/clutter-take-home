@@ -1,0 +1,24 @@
+#movie-cast-member-container .small-circular-btn {
+  height: 3em;
+  width: 3em;
+  border-radius: 1.5em;
+  border: 1px solid #c3e6cc;
+  background: #c3e6cc;
+  line-height: 3em;
+  text-align: center;
+  color: #fff;
+  display: inline-block;
+  margin: 0em 1em;
+  cursor: pointer;
+}
+
+#movie-cast-member-container .small-circular-btn:active {
+  background: #93ffc3;
+  border: #93ffc3;
+}
+
+#movie-cast-member-container .small-circular-btn.inactive {
+  background: #e4efe8;
+  border: 1px solid #e4efe8;
+  cursor: not-allowed;
+}

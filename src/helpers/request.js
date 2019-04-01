@@ -3,23 +3,19 @@
  * Responsible for managing external request methods
  */
 
-const ROOT_URL = 'https://clutter-front-end-interview.herokuapp.com'
+export const ROOT_URL = 'https://clutter-front-end-interview.herokuapp.com'
 
 const _GET = async (url) => {
   try {
-    const res = await fetch(url)
-    const json = res.json()
-    return json
-  } catch (e) {
+    let result = await fetch(url)
+    result = result.json()
+    return result
+  } catch(e) {
     console.error(e)
     return null
   }
 }
 
-export const getMoviesByID = async (movieID) => _GET(`${ROOT_URL}/movies/${movieID}.json`)
+export const getMoviesByTerm = async (term) => await _GET(`${ROOT_URL}/movies.json?q[title_cont]=${term}`)
 
-export const getMoviesByTerm = async (term) => _GET(`${ROOT_URL}/movies.json?q[title_cont]=${term}`)
-
-export const getCastMemberByID = async (movieID) => _GET(`${ROOT_URL}/movies/${movieID}/cast_members.json`)
-
-
+export const getCastMemberByID = async (movieID) => await _GET(`${ROOT_URL}/movies/${movieID}/cast_members.json`)

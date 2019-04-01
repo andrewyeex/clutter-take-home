@@ -16,12 +16,13 @@ const { Text } = Typography
 export const MovieItem = React.memo(function MovieItem(props){
   const {
     id,
-    poster_path : img,
+    poster_path,
     title,
-    release_date : date,
+    release_date,
     handleOnClick,
     selectedMovieID
   } = props
+  const src = typeof poster_path === 'string' && !!poster_path.length && { src: poster_path }
   return(
     <Row
       id={id}
@@ -29,18 +30,16 @@ export const MovieItem = React.memo(function MovieItem(props){
       onClick={()=>handleOnClick(props)}>
       <Col xs={8} sm={8} md={8} lg={8} xl={8}>
         <Avatar 
+          alt='movie poster'
+          size='large'
+          shape='square'
           className='movie-item-avatar'
-          {...{
-          shape: 'square',
-          size: 'large',
-          alt: 'movie poster',
-          ...(!!img.length && {src: img})
-        }} />
+          {...{...src}} />
       </Col>
       <Col xs={16} sm={16} md={16} lg={16} xl={16}>
         <div>
           <h3>{title}</h3>
-          <Text type='secondary'>{formatDate(date)}</Text>
+          <Text type='secondary'>{formatDate(release_date)}</Text>
         </div>
       </Col>
     </Row>
@@ -52,12 +51,4 @@ MovieItem.prototype = {
   title: PropTypes.string.isRequired,
   release_date: PropTypes.string.isRequired,
   handleOnClick: PropTypes.func.isRequired
-}
-
-MovieItem.defaultProps = {
-  poster_path: '',
-  title: 'default',
-  release_date: '2004-11-05T00:00:00.000Z',
-  selectedMovieID: -1,
-  handleOnClick: () => console.error('callback unavailable')
 }

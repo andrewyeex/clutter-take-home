@@ -13,6 +13,7 @@
     "eslint-plugin-jsx-a11y": "6.x",
     "eslint-plugin-react": "7.x",
     "jest-enzyme": "7.0.2",
+    "nock": "^10.0.6",
     "react": "16.8.5",
     "react-dom": "16.8.5",
     "react-scripts": "2.1.8",

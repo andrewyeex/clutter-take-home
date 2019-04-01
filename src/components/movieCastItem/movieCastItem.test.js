@@ -1,10 +1,10 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { CastMemberItem } from './castMemberItem'
+import { MovieCastItem } from './movieCastItem'
 
-describe('CastMemberItem', () => {
+describe('MovieCastItem', () => {
   let wrapper
-  beforeEach(() => { wrapper = shallow(<CastMemberItem />) })
+  beforeEach(() => { wrapper = shallow(<MovieCastItem />) })
   
   test('Renders without crashing', () => { expect(wrapper).toExist() })
 

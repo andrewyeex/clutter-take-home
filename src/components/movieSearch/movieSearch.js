@@ -1,33 +1,31 @@
 import React from 'react'
 import {
-  Spin,
   Input,
   Row,
   Col,
-  Icon
 } from 'antd'
 import PropTypes from 'prop-types'
 
 import { MovieItem } from '../movieItem/movieItem'
+import { MovieLoading } from '../movieLoading/movieLoading'
 
-import './searchPane.css'
+import './movieSearch.css'
 
 const { Search } = Input
-const antIcon = <Icon type='loading' style={{ fontSize: 48, color: '#fff' }} spin />
 
-export const SearchPane = React.memo(function SearchPane({
+export const MovieSearch = React.memo(function MovieSearch({
   movieResults,
-  isLoadingSearchRequest,
+  isLoadingSearch,
   selectedMovieID,
   handleSearch,
   handleSelectedMovie
 }){
   return(
-    <Row id='search-pane-container'>
+    <Row id='movie-search-container'>
       <Col span={24}>
         <div className='padding-wrapper'>
           <Search
-            id='search-pane-input'
+            id='movie-search-input'
             placeholder='Enter movie term'
             onSearch={handleSearch}
             style={{ width: '100%' }}
@@ -35,13 +33,11 @@ export const SearchPane = React.memo(function SearchPane({
         </div>
       </Col>
       <Col span={24} style={{ height: 'calc(100% - 60px)' }}>
-        <div id='search-list-container'>
+        <div id='movie-search-list-container'>
           {
-            isLoadingSearchRequest ?
-            <div id='search-spin'>
-              <Spin indicator={antIcon} color='#fff'/>
-            </div> :
-            movieResults.map(
+            isLoadingSearch ?
+            <MovieLoading id='search-spin' /> :
+            Array.isArray(movieResults) && movieResults.map(
               movie =>
                 <MovieItem
                   key={movie.id}
@@ -57,7 +53,7 @@ export const SearchPane = React.memo(function SearchPane({
 })
 
 
-SearchPane.propTypes = {
+MovieSearch.propTypes = {
   movieResults: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
@@ -69,15 +65,7 @@ SearchPane.propTypes = {
     })
   ).isRequired,
   selectedMovieID: PropTypes.number,
-  isLoadingSearchRequest: PropTypes.bool,
+  isLoadingSearch: PropTypes.bool,
   handleSelectedMovie: PropTypes.func.isRequired,
   handleSearch: PropTypes.func.isRequired
-}
-
-SearchPane.defaultProps = {
-  movieResults : [],
-  selectedMovieID: -1,
-  isLoadingSearchRequest: false,
-  handleSelectedMovie: () => console.error('callback unavailable'),
-  handleSearch: () => console.error('callback unavailable')
 }
