@@ -2,7 +2,7 @@ import React from 'react'
 import {
   Input,
   Row,
-  Col,
+  Col
 } from 'antd'
 import PropTypes from 'prop-types'
 
@@ -26,7 +26,7 @@ export const MovieSearch = React.memo(function MovieSearch({
         <div className='padding-wrapper'>
           <Search
             id='movie-search-input'
-            placeholder='Enter movie term'
+            placeholder='Search for a movie'
             onSearch={handleSearch}
             style={{ width: '100%' }}
           />

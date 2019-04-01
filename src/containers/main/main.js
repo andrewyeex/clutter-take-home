@@ -6,7 +6,10 @@ import {
 
 import { MovieSearch } from '../../components/movieSearch/movieSearch'
 import { MovieContent } from '../../components/movieContent/movieContent'
-import { paginateArray } from '../../helpers/utils'
+import {
+  sanitize,
+  paginateArray
+} from '../../helpers/utils'
 import {
   getCastMemberByID,
   getMoviesByTerm
@@ -40,7 +43,7 @@ export default class Main extends Component {
     const castMembers = await getCastMemberByID(id)
     this.setState({
       ...{...(
-        Array.isArray(castMembers) && 
+        Array.isArray(castMembers) &&
         {
           castMembers: paginateArray(castMembers, 6),
           selectedMovie: {
@@ -56,7 +59,8 @@ export default class Main extends Component {
   }
 
   handleSearch = async (term) => {
-    // if (!term || !term.match(/[a-z0-9]/gi)) return false
+    term = sanitize(term)
+    if (!term) return false
     this.setState({
       movieResults: [],
       selectedMovie: {},

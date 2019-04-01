@@ -21,6 +21,7 @@ export const getBaseImgURL = str => {
  * @param {Number} limit
  */
 export const paginateArray = (arr, limit) => {
+  if (Number.isNaN(limit) || !Array.isArray(arr)) return [[]]
   return arr.reduce((sub, item) => {
     if (sub[sub.length - 1].length >= limit) sub.push([item])
     else sub[sub.length - 1].push(item)
@@ -41,3 +42,10 @@ export const formatDate = str => {
         date.getDate().toString().padStart(2, '0') + '/' +
         date.getFullYear()
 }
+
+/**
+ * Input: 'monster (inc.) '
+ * Output: 'monster  inc'
+ * @param {String} str
+ */
+export const sanitize = str => typeof str === 'string' && str.replace(/[^a-z 0-9]/gi, ' ').trim()

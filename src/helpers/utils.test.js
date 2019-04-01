@@ -1,4 +1,5 @@
 import * as utils from './utils'
+import { util } from 'node-forge';
 
 describe('Utils', () => {
   test('getBaseImgURL', () => {
@@ -16,12 +17,23 @@ describe('Utils', () => {
     const output = '11/04/2004'
     expect(utils.formatDate(input)).toEqual(output)
   })
+  test('sanitize', () => {
+    const input = 'monster (inc.)'
+    const output = 'monster  inc'
+    expect(utils.sanitize(input)).toEqual(output)
+  })
   describe('Incorrect Params', () => {
     test('getBaseImgURL()', () => {
       expect(utils.getBaseImgURL()).toBe(undefined)
     })
     test('formatDate()', () => {
       expect(utils.formatDate()).toBe(undefined)
+    })
+    test('paginateArray()', () => {
+      expect(utils.paginateArray()).toEqual([[]])
+    })
+    test('sanitize()', () => {
+      expect(utils.sanitize()).toBe(false)
     })
   })
 })

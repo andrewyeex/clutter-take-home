@@ -10,7 +10,6 @@ import castMembers from '../../fixtures/castMember.json'
 import {
   paginateArray
 } from '../../helpers/utils'
-import { wrap } from 'module';
 
 global.fetch = require('node-fetch') // fetch is a browser object
 
@@ -19,6 +18,11 @@ describe('Main Container', () => {
   beforeEach(() => { wrapper = shallow(<Main />) })
 
   test('renders without crashing', () => { expect(wrapper).toExist() })
+
+  test('No Movie Content', () => {
+    wrapper.setState({ selectedMovie: {} })
+    expect(wrapper.find('#movie-content-container')).not.toExist()
+  })
 
   describe('handleSelectedMovie (fetches for cast member of movie)', () => {
     const selectedMovie = movies[0]
@@ -66,7 +70,7 @@ describe('Main Container', () => {
   })
 
   describe('handleSearch', () => {
-    test('a valid term', async () => {
+    test('a valid term, successful fetch', async () => {
       const request = nock(req.ROOT_URL)
         .get('/movies.json?q[title_cont]=term')
         .reply(200, movies)
@@ -76,7 +80,21 @@ describe('Main Container', () => {
       expect(wrapper.state().movieResults).toEqual(movies)
       request.isDone()
     })
-
+    test('falsy term', async () => {
+      expect(await wrapper.instance().handleSearch('')).toEqual(false)
+    })
+    test('failed fetch of movies', async () => {
+      const request = nock(req.ROOT_URL)
+      .get('/movies.json?q[title_cont]=term')
+      .replyWithError({
+        code: 400,
+        message: 'Bad Request'
+      })
+      await wrapper.instance().handleSearch('term')
+      expect(wrapper.state().movieResults).toEqual([])
+      expect(wrapper.state().isLoadingSearch).toEqual(false)
+      request.isDone()
+    })
   })
 
   describe('handleOnNextPagination', () => {
@@ -93,8 +111,6 @@ describe('Main Container', () => {
       expect(wrapper.state().currentPagination).toEqual(0)
     })
   })
-  
-
 
   describe('handleOnPrevPagination', () => {
     test('When at the beginning', () => {
@@ -110,5 +126,4 @@ describe('Main Container', () => {
       expect(wrapper.state().currentPagination).toEqual(0)
     })
   })
-
 })
