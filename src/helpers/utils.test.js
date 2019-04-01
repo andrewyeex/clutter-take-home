@@ -1,5 +1,4 @@
 import * as utils from './utils'
-import { util } from 'node-forge';
 
 describe('Utils', () => {
   test('getBaseImgURL', () => {
