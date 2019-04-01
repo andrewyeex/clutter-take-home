@@ -6,28 +6,21 @@ describe('Movie Item', () => {
   let wrapper, defaultProps
   beforeEach(() => {
     defaultProps = {
+      id: 'movie-item',
       poster_path: '',
       title: 'default',
       release_date: '2004-11-05T00:00:00.000Z',
       selectedMovieID: -1,
-      handleOnClick: () => console.error('callback unavailable')
+      handleOnClick: jest.fn()
     }
-    wrapper = shallow(<MovieItem />)
+    wrapper = shallow(<MovieItem {...defaultProps} />)
   })
 
   test('Renders without crashing', () => { expect(wrapper).toExist() })
 
-  describe('Default Props', () => {
-    test('handleOnClick', () => {
-      expect(MovieItem.defaultProps.handleOnClick()).toEqual(defaultProps.handleOnClick())
-    })
-  })
-
   test('Handles onClick', () => {
-    const handleOnClick = jest.fn()
-    wrapper.setProps({ handleOnClick })
-    wrapper.find('.movie-item').props().onClick()
-    expect(handleOnClick).toHaveBeenCalledTimes(1)
+    wrapper.find('#movie-item').props().onClick()
+    expect(defaultProps.handleOnClick).toHaveBeenCalledTimes(1)
   })
 
   describe('Renders', () => {

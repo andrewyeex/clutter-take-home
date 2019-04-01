@@ -7,10 +7,7 @@ import {
 
 const antIcon = <Icon type='loading' style={{ fontSize: 48, color: '#fff'}} spin />
 
-export const MovieLoading = React.memo(function MovieLoading({
-  id,
-  loadingJSX
-}){
+export const MovieLoading = React.memo(function MovieLoading({ id }){
   return(
     <div id={id}>
       <Spin indicator={antIcon} />
